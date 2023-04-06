@@ -25,7 +25,8 @@ export default function App(): JSX.Element {
 
             <div className="flex flex-col items-center gap-1">
                <h1 className="flex-grow py-2 pr-3 text-xl font-bold border-indigo-800 rounded-lg sm:text-3xl text-indigo-50 box-sizing bg-slate-900/90">
-                  <span className="inline-block px-3 py-2 mr-2 transform bg-indigo-800 rounded-lg shadow-lg ring-2 ring-offset-4 ring-indigo-400 -rotate-6 ring-offset-slate-950">TV</span> Database
+                  <span className="relative z-10 inline-block px-3 py-2 mr-3 tracking-wider transform bg-indigo-800 rounded-lg shadow-xl ring-2 ring-offset-4 ring-indigo-400 -rotate-6 ring-offset-slate-950 shadow-indigo-500/10">
+                     TV</span> Database
                </h1>
                <h2 className="pt-2 font-bold tracking-wide text-slate-800 text-md">
                </h2>
@@ -33,7 +34,7 @@ export default function App(): JSX.Element {
 
             <form className="flex flex-wrap gap-2">
                <input
-                  className="flex-grow px-6 py-3 text-sm rounded-md shadow-inner"
+                  className="flex-grow px-6 py-3 text-sm border border-indigo-900 rounded-md shadow-inner bg-indigo-50/10 focus:border-indigo-400 focus:border focus:shadow-outline focus:ring-indigo-500 focus:outline-none min-w-[30ch] box-border text-indigo-50 sm:text-lg"
                   autoFocus
                   value={query}
                   onChange={(e) => onQueryChange(e.target.value)}
@@ -42,9 +43,11 @@ export default function App(): JSX.Element {
                <button
                   type="button"
                   onClick={onSearch}
-                  className="flex-grow px-4 py-2 text-sm font-bold tracking-wide uppercase bg-indigo-800 rounded-md shadow-lg text-slate-50 shadow-indigo-900/20 animation-pulse"
+                  className="flex-grow px-4 py-2 text-sm font-bold tracking-wide uppercase transition bg-indigo-800 border-t-2 border-b rounded-md shadow-lg text-slate-50 shadow-indigo-950/10 animation-pulse border-b-indigo-950 border-t-indigo-50/10 active:border-t-0 active:bg-indigo-800/50 active:border-b active:border-b-indigo-700 active:text-slate-50/80 group active:shadow-inner hover:bg-indigo-700 hover:scale-[1.02]"
                >
+                  <span className="inline-block transition transform group:active:translate-y-12">
                   Search
+</span>
                </button>
             </form>
          </div>
