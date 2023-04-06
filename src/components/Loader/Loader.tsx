@@ -4,5 +4,5 @@ export interface Props {
 }
 
 export function Loader({ isLoading, children }: Props): JSX.Element {
-   return isLoading ? <div>Loading...</div> : <>{children}</>;
+   return isLoading ? <div className="flex-grow">Loading...</div> : <>{children}</>;
 }
