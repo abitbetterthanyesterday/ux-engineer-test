@@ -17,7 +17,6 @@ Clone this repository and set up your own, new repository as the origin remote.
 Once your remote repository is ready, add @ckortekaas and @nathanhoad and let us know that you've completed the challenge.
 
 ## Your comments
-## Your comments
 This section is used as a brain dump so I plan the project by identifying what I'm trying to achieve here.
 I might re-organise my thoughts as the project evolve.
 
@@ -25,10 +24,10 @@ Apologies for any grammar mistakes, I tend to write fast and clean up language i
 
 ### Roadmap
 - [x] Initial Roadmap
-- [ ] Initial setup
+- [x] Initial setup
   - [x] Add support for Tailwind
-  - [ ] Refactor existing code (split into components/custom hooks)
-  - [ ] Add test cases to describe existing behaviour. Do not unit test existing code, but rather integration/e2e-ish
+  - [x] Refactor existing code (split into components/custom hooks)
+  - [x] Add test cases to describe existing behaviour. Do not unit test existing code, but rather integration/e2e-ish
 - [-] Plan UX 
   - [x] Identify use cases
   - [x] Describe user journey
@@ -49,6 +48,24 @@ This exercise is two folds:
 - from a UI perspective, we want to make the application appealing,
 
 #### UX
+---
+UPDATE: After the refactoring phase, I got to know the codebase a bit better.
+
+It seems to fit perfectly the needs I identified below, which is great.
+At this stage, I am fairly happy with the general flow of the application.
+I think the UX improvements will be more granular: animation, accessibiltiy, consistency as well as guiding the user to success through a clear path.
+
+There are some improvements that can be made:
+- in terms of accessibility by using semantic markup (HTML),
+- adding empty state,
+- improving error handling,
+
+I am sure I will find improvements along the way.
+
+One missing feature is the ability to share results, as identified below.
+
+---
+
 I do not have why this application has been created in the first place.
 However, the scenario in which this application is the user is most likely the following:
 
@@ -173,6 +190,12 @@ Without going into debating whether or not polluting the markup is a good idea, 
 (As discussed in the UI point above).
 
 #### Testing
+
+--- 
+UPDATE: I ended up adding more tests cases than I originally thought when refactoring but it was a good way to review the codebase.
+
+---
+
 The exercise does not mention writing test cases: it is focused on UX/UI. 
 However, in my experience refactoring without test cases is not the best idea.
 To treat this as a 'real-world' example, I will add integration tests to ensure the current behaviour is not altered.
@@ -183,6 +206,7 @@ Although testing AFTER writing the code is painful, I am keeping in mind that th
 Overall the testing will remain concise and high-level, as I'm treating this exercise as a high fidelity prototype.
 
 Ultimately, the goal of testing here will be more about proof that I can test code - it's not justifiable from the application point of view.
+
 
 ## Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
