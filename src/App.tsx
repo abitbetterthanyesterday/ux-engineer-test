@@ -81,7 +81,7 @@ export default function App(): JSX.Element {
 
   return (
     <div className="app">
-      <h1>TV Database</h1>
+      <h1 className="text-3xl text-red-500 font-bold underline">TV Database</h1>
       <form className="search">
         <input
           autoFocus
