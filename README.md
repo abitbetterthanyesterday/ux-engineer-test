@@ -28,13 +28,15 @@ Apologies for any grammar mistakes, I tend to write fast and clean up language i
   - [x] Add support for Tailwind
   - [x] Refactor existing code (split into components/custom hooks)
   - [x] Add test cases to describe existing behaviour. Do not unit test existing code, but rather integration/e2e-ish
-- [-] Plan UX 
+- [x] Plan UX 
   - [x] Identify use cases
   - [x] Describe user journey
-  - [ ] Explore existing app/API technical limitations
+  - [x] Explore existing app/API technical limitations
 - [x] Plan UI
   - [x] Mood: colors, fonts, icons.
   - [x] Sketch/Wirerame
+- [ ]  Implement!
+   - [ ] Landing screen UI
 
 ### Goal/Context
 From my initial read of the codebase, the application allows users to search TV shows using an external API.
