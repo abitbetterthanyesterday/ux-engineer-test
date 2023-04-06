@@ -24,14 +24,18 @@ I might re-organise my thoughts as the project evolve.
 Apologies for any grammar mistakes, I tend to write fast and clean up language issues later.
 
 ### Roadmap
-- [x] Roadmap
+- [x] Initial Roadmap
 - [ ] Initial setup
-  - [ ] Add support for Tailwind
+  - [x] Add support for Tailwind
   - [ ] Refactor existing code (split into components/custom hooks)
   - [ ] Add test cases to describe existing behaviour. Do not unit test existing code, but rather integration/e2e-ish
-- [ ] UX
-- [ ] UI
-
+- [-] Plan UX 
+  - [x] Identify use cases
+  - [x] Describe user journey
+  - [ ] Explore existing app/API technical limitations
+- [x] Plan UI
+  - [x] Mood: colors, fonts, icons.
+  - [x] Sketch/Wirerame
 
 ### Goal/Context
 From my initial read of the codebase, the application allows users to search TV shows using an external API.
