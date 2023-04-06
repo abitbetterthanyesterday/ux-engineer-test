@@ -10,6 +10,9 @@ export interface IShow {
    _embedded: {
       cast: Array<ICastMember>;
    };
+   // We extend the interface to allow extra properties.
+   // In reality, the API returns a lot more properties than we use.
+   [x: string | number | symbol]: unknown;
 }
 
 export interface ICastMember {
