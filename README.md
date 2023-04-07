@@ -6,37 +6,43 @@ While this app does technically work it is lacking in both UI design and UX. Tha
 
 For this test you will be updating the design and applying whatever CSS wizardry you think would make it better.
 
-We will be looking specifically at what you choose to do and how you choose to do it. 
+We will be looking specifically at what you choose to do and how you choose to do it.
 
 Feel free to use libraries like Tailwind. You might also want to move some of the components into their own files/folders.
 
 ## Submitting your solution
 
-Clone this repository and set up your own, new repository as the origin remote. 
+Clone this repository and set up your own, new repository as the origin remote.
 
 Once your remote repository is ready, add @ckortekaas and @nathanhoad and let us know that you've completed the challenge.
 
 ## Your comments
+
 This section is used as a brain dump so I plan the project by identifying what I'm trying to achieve here.
 I might re-organise my thoughts as the project evolve.
 
 Apologies for any grammar mistakes, I tend to write fast and clean up language issues later.
 
 ### Roadmap
+
 - [x] Initial Roadmap
 - [x] Initial setup
   - [x] Add support for Tailwind
   - [x] Refactor existing code (split into components/custom hooks)
   - [x] Add test cases to describe existing behaviour. Do not unit test existing code, but rather integration/e2e-ish
-- [-] Plan UX 
+- [x] Plan UX
   - [x] Identify use cases
   - [x] Describe user journey
-  - [ ] Explore existing app/API technical limitations
+  - [x] Explore existing app/API technical limitations
 - [x] Plan UI
   - [x] Mood: colors, fonts, icons.
   - [x] Sketch/Wirerame
+- [ ]  Implement!
+  - [x] Landing screen UI
+  - [ ] Search result UI
 
 ### Goal/Context
+
 From my initial read of the codebase, the application allows users to search TV shows using an external API.
 The user can search for a TV show by name and get a bunch of information about it: cast, year, genre, etc.
 
@@ -44,10 +50,29 @@ My role is to enhance the user experience by both improving the UX and the UI of
 I will be acting as if we are trying to produce a high-fidelity prototype.
 
 This exercise is two folds:
+
 - from a UX perspective, we want to identify the use case of the application and address them,
 - from a UI perspective, we want to make the application appealing,
 
+### Known Issues
+
+#### Landing screen
+
+The landing screen has a great UI, but it causes issues in terms of UX.
+It works fine as long as the internet is reliable and fast as the images are fetched from the internet.
+
+In a real-world situation, I would advocate turning it into a video.
+
+Also, a 'prefer reduce motion' mode should be implemented for accessibility reasons.
+
+Finally, the background is distracting once the search is done.
+I am unsure at this stage how I will address this issue, I have two options:
+
+  1. Remove that background once the research is done. I can easily add this with a simple routing feature.
+  2. Darken the background once the research is done and stop the animation.
+
 #### UX
+
 ---
 UPDATE: After the refactoring phase, I got to know the codebase a bit better.
 
@@ -56,14 +81,14 @@ At this stage, I am fairly happy with the general flow of the application.
 I think the UX improvements will be more granular: animation, accessibiltiy, consistency as well as guiding the user to success through a clear path.
 
 There are some improvements that can be made:
+
 - in terms of accessibility by using semantic markup (HTML),
 - adding empty state,
 - improving error handling,
 
 I am sure I will find improvements along the way.
 
-One missing feature is the ability to share results, as identified below.
-
+One missing feature is the ability to share results, as identified below
 ---
 
 I do not have why this application has been created in the first place.
@@ -79,6 +104,7 @@ As often, we could extend this application to cover more use cases.
 For sake of brevity and given the time available, we will focus on this one use case.
 
 The following use cases won't be covered:
+
 - Wiki links on any cast members, director, genre or any information related to the show.
 - The search will only allow searching by title.
 - There won't be any ability to store and review the previous search: the application will be stateless.
@@ -133,7 +159,7 @@ I want to avoid repetition through words (show more) as from experience it tends
 
 Again, visuals are very strong, especially since the medium is something you watch.
 
-Given this, we should emphasize visuals. The API returns an image of the cast. 
+Given this, we should emphasize visuals. The API returns an image of the cast.
 I think this, along with the visual of the show itself should have more importance.
 
 Secondary information would be the textual information: genre, year, etc.
@@ -160,12 +186,13 @@ A user might be going back and forth between results and prefetching would creat
 The only requirement here is to communicate that the user will lose the current search.
 However, given the low barrier to getting the result back, it's not a critical point - but avoiding unwanted pain to the user is always better.
 
-I would suggest a clear action button such as: 'New search' or 'Reset' rather than a simple icon. 
+I would suggest a clear action button such as: 'New search' or 'Reset' rather than a simple icon.
 
 #### UI
+
 UI can't be described only by words, but I believe the UX above give a good starting point for where we are heading.
 
-The mood should be modern, but simple. 
+The mood should be modern, but simple.
 A 'dark' mode would be the preference here: when watching TV shows, it's often in the dark and the evening.
 
 Font: use a clear, non-formal (i.e. non serif) font.
@@ -174,29 +201,32 @@ Look and feel round (playful), plenty of negative space (simplicity), leverage c
 Icon-set: Feathers icons would fit the general mood quite well.
 
 Inspirations:
-- https://frame.io 
+
+- <https://frame.io>
 
 I don't intend to wireframe other than a sketch on paper, I have a clear vision of where I want this to go.
 Using Tailwind, I can quickly prototype and apply changes as required directly in the code.
 
 #### Responsiveness
+
 The application should be mobile first: no one is going to fire up their computer to look up a TV show.
-While being accessible on a desktop, the mobile/tablet version will be the primary concern. 
+While being accessible on a desktop, the mobile/tablet version will be the primary concern.
 The desktop version will be an accessible version of the mobile/table version.
 
 #### Why Tailwind?
-The README allows the use of Tailwind. 
+
+The README allows the use of Tailwind.
 Without going into debating whether or not polluting the markup is a good idea, I will be using Tailwind for the project as it is perfect for quick prototyping.
 (As discussed in the UI point above).
 
 #### Testing
 
---- 
+---
 UPDATE: I ended up adding more tests cases than I originally thought when refactoring but it was a good way to review the codebase.
 
 ---
 
-The exercise does not mention writing test cases: it is focused on UX/UI. 
+The exercise does not mention writing test cases: it is focused on UX/UI.
 However, in my experience refactoring without test cases is not the best idea.
 To treat this as a 'real-world' example, I will add integration tests to ensure the current behaviour is not altered.
 
@@ -207,8 +237,8 @@ Overall the testing will remain concise and high-level, as I'm treating this exe
 
 Ultimately, the goal of testing here will be more about proof that I can test code - it's not justifiable from the application point of view.
 
-
 ## Create React App
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
