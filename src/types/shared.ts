@@ -1,3 +1,18 @@
+export interface IAppContext {
+    query: string;
+    setQuery: (nextQuery: string) => void;
+    isLoading: boolean;
+    setIsLoading: (nextLoading: boolean) => void;
+    error: string;
+    setError: (nextError: string) => void;
+    hasSearched: boolean;
+    setHasSearched: (nextHasSearched: boolean) => void;
+    shows: Array<IShow>;
+    setShows: (nextShows: Array<IShow>) => void;
+    show: IShow | null;
+    setShow: (nextSelectedShow: IShow | null) => void;
+}
+
 export interface IShow {
    id: number;
    name: string;

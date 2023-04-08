@@ -1,13 +1,24 @@
+import { AppContext } from "../../contexts/AppContext";
 import { IShow } from "../../types/shared";
-import { useState } from "react";
+import { useContext } from "react";
 
-export function useSearchShow() {
-   const [query, setQuery] = useState<string>("");
-   const [isLoading, setIsLoading] = useState<boolean>(false);
-   const [error, setError] = useState<string>("");
-   const [hasSearched, setHasSearched] = useState<boolean>(false);
-   const [shows, setShows] = useState<Array<IShow>>([]);
-   const [show, setShow] = useState<IShow | null>(null);
+export function useSearchShow(
+) {
+   const {
+      isLoading,
+      setIsLoading,
+      query,
+      setQuery,
+      error,
+      setError,
+      hasSearched,
+      setHasSearched,
+      shows,
+      setShows,
+      show,
+      setShow,
+   } = useContext(AppContext);
+
 
    function onQueryChange(nextQuery: string): void {
       setHasSearched(false);
@@ -18,6 +29,8 @@ export function useSearchShow() {
    }
 
    function onSearch(): void {
+      if (!query) return;
+
       setHasSearched(false);
       setIsLoading(true);
       setShows([]);

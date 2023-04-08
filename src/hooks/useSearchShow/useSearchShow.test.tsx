@@ -1,15 +1,17 @@
-import { act, cleanup, waitFor } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react";
 
+import { AppProvider } from "../../contexts/AppContext";
 import { IShow } from "../../types/shared";
 import { MOCK_SHOWS } from "../../tests/fixtures";
 import { renderHook } from "@testing-library/react-hooks";
 import { useSearchShow } from "./useSearchShow";
 
 describe("hooks/useSearchShow", () => {
+
    describe("onQueryChange", () => {
       it("sets loading state to true when search is called", () => {
          // Arrange
-         const { result } = renderHook(() => useSearchShow());
+         const { result } = renderHook(() => useSearchShow(), {wrapper:AppProvider} )
          // Act
          act(() => {
             result.current.onSearch();
@@ -33,7 +35,7 @@ describe("hooks/useSearchShow", () => {
                },
             });
          });
-         const { result } = renderHook(() => useSearchShow());
+         const { result } = renderHook(() => useSearchShow(), {wrapper:AppProvider});
 
          // Act
          act(() => {
@@ -52,7 +54,7 @@ describe("hooks/useSearchShow", () => {
          global.fetch = jest.fn().mockImplementation(() => {
             return Promise.reject("Could not load shows.");
          });
-         const { result } = renderHook(() => useSearchShow());
+         const { result } = renderHook(() => useSearchShow(), {wrapper:AppProvider});
 
          // Act
          act(() => {
@@ -76,7 +78,7 @@ describe("hooks/useSearchShow", () => {
                },
             });
          });
-         const { result } = renderHook(() => useSearchShow());
+         const { result } = renderHook(() => useSearchShow(), {wrapper:AppProvider});
          // Act
          act(() => {
             result.current.onSelectShow(MOCK_SHOWS[0]);
