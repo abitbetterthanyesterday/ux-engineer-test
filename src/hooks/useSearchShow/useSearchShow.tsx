@@ -64,5 +64,8 @@ export function useSearchShow() {
       onSearch,
       onSelectShow,
       unSelectShow: () => setShow(null),
+      backToSearch: () => {
+         onQueryChange('');
+      }
    };
 }
