@@ -9,8 +9,8 @@ export interface IAppContext {
     setHasSearched: (nextHasSearched: boolean) => void;
     shows: Array<IShow>;
     setShows: (nextShows: Array<IShow>) => void;
-    show: IShow | null;
-    setShow: (nextSelectedShow: IShow | null) => void;
+    selectedShow: IShow | null;
+    setSelectedShow: (nextSelectedShow: IShow | null) => void;
 }
 
 export interface IShow {

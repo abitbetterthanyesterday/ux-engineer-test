@@ -15,8 +15,8 @@ export function useSearchShow(
       setHasSearched,
       shows,
       setShows,
-      show,
-      setShow,
+      selectedShow,
+      setSelectedShow,
    } = useContext(AppContext);
 
 
@@ -24,7 +24,7 @@ export function useSearchShow(
       setHasSearched(false);
       setQuery(nextQuery);
       setShows([]);
-      setShow(null);
+      setSelectedShow(null);
       setError("");
    }
 
@@ -34,7 +34,7 @@ export function useSearchShow(
       setHasSearched(false);
       setIsLoading(true);
       setShows([]);
-      setShow(null);
+      setSelectedShow(null);
       setError("");
 
       fetch(`https://api.tvmaze.com/search/shows?q=${query}`)
@@ -58,7 +58,7 @@ export function useSearchShow(
          .then((r: Response) => r.json())
          .then((json: IShow) => {
             setIsLoading(false);
-            setShow(json);
+            setSelectedShow(json);
          })
          .catch(() => {
             setIsLoading(false);
@@ -72,11 +72,11 @@ export function useSearchShow(
       error,
       hasSearched,
       shows,
-      show,
+      selectedShow,
       onQueryChange,
       onSearch,
       onSelectShow,
-      unSelectShow: () => setShow(null),
+      unSelectShow: () => setSelectedShow(null),
       backToSearch: () => {
          onQueryChange('');
       }
