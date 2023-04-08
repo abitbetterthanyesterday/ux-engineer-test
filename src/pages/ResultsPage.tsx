@@ -10,8 +10,8 @@ export function ResultsPage() {
    } = useSearchShow();
 
    return (
-      <div className="flex flex-col w-screen h-screen px-4 py-4 overflow-hidden bg-gradient-to-t from-slate-950 to-indigo-950 text-slate-50">
-         <span className="py-0 text-sm underline uppercase transition text-indigo-50/50 hover:text-indigo-50 hover:scale-105" onClick={backToSearch}>Back</span>
+      <div className="flex flex-col w-screen h-screen px-4 py-4 overflow-hidden bg-gradient-to-t from-slate-950 to-slate-900 text-slate-50">
+         <span className="block py-0 text-sm underline uppercase transition origin-center text-indigo-50/50 hover:text-indigo-50 hover:scale-[1.03] cursor-pointer" onClick={backToSearch}>Back</span>
 
          <div className="pt-8">
             <SearchInput />
@@ -30,7 +30,6 @@ export function ResultsPage() {
                No results for "{query}"
             </p>
          )}
-
       </div >
    )
 }
