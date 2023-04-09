@@ -15,6 +15,8 @@ export const initialContext: IAppContext = {
     setShows: () => { },
     selectedShow: null,
     setSelectedShow: () => { },
+    hasInitialSearched: false,
+    setHasInitialSearched: () => { },
 };
 
 export const AppContext = createContext<IAppContext>(initialContext);
@@ -26,10 +28,13 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     const [hasSearched, setHasSearched] = useState(false);
     const [shows, setShows] = useState<IShow[]>([]);
     const [selectedShow, setSelectedShow] = useState<IShow | null>(null);
+    const [hasInitialSearched, setHasInitialSearched] = useState(false);
 
     return (
         <AppContext.Provider
             value={{
+                setHasInitialSearched,
+                hasInitialSearched,
                 isLoading,
                 setIsLoading,
                 query,

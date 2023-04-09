@@ -11,6 +11,8 @@ export interface IAppContext {
     setShows: (nextShows: Array<IShow>) => void;
     selectedShow: IShow | null;
     setSelectedShow: (nextSelectedShow: IShow | null) => void;
+    hasInitialSearched: boolean;
+      setHasInitialSearched: (nextHasInitialSearch: boolean) => void;
 }
 
 export interface IShow {

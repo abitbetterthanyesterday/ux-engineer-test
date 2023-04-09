@@ -17,6 +17,8 @@ export function useSearchShow(
       setShows,
       selectedShow,
       setSelectedShow,
+      setHasInitialSearched,
+      hasInitialSearched
    } = useContext(AppContext);
 
 
@@ -31,6 +33,7 @@ export function useSearchShow(
    function onSearch(): void {
       if (!query) return;
 
+      setHasInitialSearched(true);
       setHasSearched(false);
       setIsLoading(true);
       setShows([]);
@@ -77,8 +80,6 @@ export function useSearchShow(
       onSearch,
       onSelectShow,
       unSelectShow: () => setSelectedShow(null),
-      backToSearch: () => {
-         onQueryChange('');
-      }
+      hasInitialSearched
    };
 }

@@ -4,8 +4,9 @@ import { useSearchShow } from "../hooks"
 
 export function Router() {
 
-    const {hasSearched} = useSearchShow()
-       if(!hasSearched) {
-       return <LandingPage/> }
-       else { return <ResultsPage/>}
+    const { hasInitialSearched } = useSearchShow()
+    if (!hasInitialSearched) {
+        return <LandingPage />
+    }
+    else { return <ResultsPage /> }
 }

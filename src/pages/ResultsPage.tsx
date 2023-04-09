@@ -1,4 +1,5 @@
 import { SearchInput, ShowList } from "../components";
+
 import { useSearchShow } from "../hooks";
 
 export function ResultsPage() {
@@ -6,13 +7,10 @@ export function ResultsPage() {
       shows,
       onSelectShow,
       query,
-      backToSearch
    } = useSearchShow();
 
    return (
       <div className="flex flex-col w-screen h-screen px-4 py-4 overflow-hidden bg-gradient-to-t from-slate-950 to-slate-900 text-slate-50">
-         <span className="block py-0 text-sm underline uppercase transition origin-center text-indigo-50/50 hover:text-indigo-50 hover:scale-[1.03] cursor-pointer" onClick={backToSearch}>Back</span>
-
          <div className="pt-8">
             <SearchInput />
          </div>
