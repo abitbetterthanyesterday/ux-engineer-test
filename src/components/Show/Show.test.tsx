@@ -1,8 +1,11 @@
-import { Props, Show } from "./Show";
 import { render, screen } from "@testing-library/react";
+
+import { IShow } from "../../types/shared";
+import { Show } from "./Show";
+
 describe("components/Show", () => {
-   const defaultProps: Props = {
-      show: {
+   const defaultProps: { selectedShow: IShow } = {
+      selectedShow: {
          id: 1,
          name: "Test Show",
          summary: "Test Summary",
@@ -27,23 +30,20 @@ describe("components/Show", () => {
             ],
          },
       },
-      onCancel: function (): void {
-         throw new Error("Function not implemented.");
-      },
    };
    it("renders the show details", () => {
-      render(<Show {...defaultProps} />);
-      expect(screen.getByText(defaultProps.show.name)).toBeInTheDocument();
+      render(<Show />);
+      expect(screen.getByText(defaultProps.selectedShow.name)).toBeInTheDocument();
       expect(
-         screen.getByText(`Premiered ${defaultProps.show.premiered}`)
+         screen.getByText(`Premiered ${defaultProps.selectedShow!.premiered}`)
       ).toBeInTheDocument();
       expect(
-         screen.getByText(defaultProps.show._embedded.cast[0].person.name)
+         screen.getByText(defaultProps.selectedShow!._embedded.cast[0].person.name)
       ).toBeInTheDocument();
    });
    it("triggers the onCancel callback when the back button is clicked", () => {
       const onCancel = jest.fn();
-      render(<Show {...defaultProps} onCancel={onCancel} />);
+      render(<Show />);
       screen.getByText("Back to list").click();
       expect(onCancel).toHaveBeenCalled();
    });

@@ -1,27 +1,44 @@
+import { useContext } from "react";
+import { AppContext } from "../../contexts/AppContext";
 import { IShow } from "../../types/shared";
-import { useState } from "react";
 
-export function useSearchShow() {
-   const [query, setQuery] = useState<string>("");
-   const [isLoading, setIsLoading] = useState<boolean>(false);
-   const [error, setError] = useState<string>("");
-   const [hasSearched, setHasSearched] = useState<boolean>(false);
-   const [shows, setShows] = useState<Array<IShow>>([]);
-   const [show, setShow] = useState<IShow | null>(null);
+export function useSearchShow(
+) {
+   const {
+      isLoading,
+      setIsLoading,
+      query,
+      setQuery,
+      error,
+      setError,
+      hasSearched,
+      setHasSearched,
+      shows,
+      setShows,
+      selectedShow,
+      setSelectedShow,
+      setHasInitialSearched,
+      hasInitialSearched
+   } = useContext(AppContext);
+
 
    function onQueryChange(nextQuery: string): void {
       setHasSearched(false);
       setQuery(nextQuery);
-      setShows([]);
-      setShow(null);
+      setShows([])
+      setSelectedShow(null);
       setError("");
    }
 
    function onSearch(): void {
+      if (!query) return;
+
+      console.log(query)
+      setHasInitialSearched(true);
       setHasSearched(false);
-      setIsLoading(true);
+      setIsLoading('query');
       setShows([]);
-      setShow(null);
+      setSelectedShow(null);
       setError("");
 
       fetch(`https://api.tvmaze.com/search/shows?q=${query}`)
@@ -38,14 +55,15 @@ export function useSearchShow() {
    }
 
    function onSelectShow(show: IShow): void {
-      setIsLoading(true);
+      setIsLoading('show');
       setError("");
+      setSelectedShow({ name: show.name } as IShow)
 
       fetch(`https://api.tvmaze.com/shows/${show.id}?embed=cast`)
          .then((r: Response) => r.json())
          .then((json: IShow) => {
+            setSelectedShow(json);
             setIsLoading(false);
-            setShow(json);
          })
          .catch(() => {
             setIsLoading(false);
@@ -59,10 +77,12 @@ export function useSearchShow() {
       error,
       hasSearched,
       shows,
-      show,
+      selectedShow,
       onQueryChange,
+      resetQuery: () => onQueryChange(""),
       onSearch,
       onSelectShow,
-      unSelectShow: () => setShow(null),
+      unSelectShow: () => setSelectedShow(null),
+      hasInitialSearched
    };
 }

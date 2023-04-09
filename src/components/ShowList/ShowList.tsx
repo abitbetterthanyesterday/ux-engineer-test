@@ -1,25 +1,22 @@
 import { IShow } from "../../types/shared";
+import { ShowListCard } from "../ShowListCard";
 
 export interface Props {
    shows: Array<IShow>;
-   onSelectShow: (show: IShow) => void;
 }
 
-export function ShowList({ shows, onSelectShow }: Props): JSX.Element {
+export function ShowList({ shows }: Props): JSX.Element {
+
    return (
-      <ul className="show-list">
-         {shows.map((show) => {
-            return (
-               <li
-                  key={show.id}
-                  className="show-preview"
-                  onClick={() => onSelectShow(show)}
-               >
-                  {show.image && <img src={show.image.medium} alt="" />}
-                  <span>{show.name}</span>
-               </li>
-            );
-         })}
-      </ul>
+      <div className="flex flex-grow">
+         <ul className={`flex items-start flex-grow gap-8 px-24 pt-4 -mx-12 sm:overflow-y-scroll overflow-x-scroll cursor-pointer md:gap-y-16 md:grid md:grid-cols-3 scroll-smooth ${shows.length === 1 && 'justify-center'} pb-6`}>
+            {shows.map((show, idx) =>
+               <div className={`animate-fadeIn delay-${idx * 75}`} key={show.id}>
+                  <ShowListCard show={show} />
+               </div>
+            )
+            }
+         </ul >
+      </div >
    );
 }
