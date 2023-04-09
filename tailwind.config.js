@@ -1,6 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
    content: ["./src/**/*.{js,jsx,ts,tsx}"],
+   safelist: [
+      {
+        pattern: /delay-*/,
+      },
+    ],
+
    theme: {
       extend: {
          container: {
@@ -15,11 +21,20 @@ module.exports = {
             'width': 'width',
           },
       animation: {
+         spin: "spin 1s linear infinite",
          slideUp: "slideUp 360s linear alternate-reverse infinite",
          slideDown: "slideDown 360s linear alternate-reverse infinite",
          fadeIn: 'fadeIn 1s ease-out'
       },
       keyframes:{
+         spin:{
+            "0%":{
+               transform: 'rotate(0deg)',
+            },
+            "100%":{
+               transform: 'rotate(360deg)',
+            }
+         },
          slideUp:{
             '0%':{
                transform: '-translateY(100%)',

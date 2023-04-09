@@ -7,9 +7,9 @@ export interface Props {
 export function CastMember({ member }: Props): JSX.Element {
    return (
       <div>
-         <div className="w-24 overflow-hidden rounded-lg shadow md:w-48">
+         <div className="overflow-hidden rounded-lg shadow-lg w-42 md:w-52 aspect-square">
             {member.person.image && (
-               <img src={member.person.image.medium} alt="" />
+               <img src={member.person.image.medium} alt="" className="object-cover w-42 aspect-square" />
             )}
          </div>
          <p data-testid="cast-name" className="flex flex-col items-center justify-center py-2">

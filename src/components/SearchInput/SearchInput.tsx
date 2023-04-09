@@ -34,12 +34,15 @@ export function SearchInput() {
          type="button"
          onClick={onSearch}
          disabled={isLoading}
-         className="flex-grow px-4 py-2 text-sm font-bold tracking-wide uppercase transition bg-indigo-800 border-t-2 border-b rounded-md shadow-lg text-slate-50 shadow-indigo-950/10 animation-pulse border-b-indigo-950 border-t-indigo-50/10 active:border-t-0 active:bg-indigo-800/50 active:border-b active:border-b-indigo-700 active:text-slate-50/80 group active:shadow-inner hover:bg-indigo-700 hover:scale-[1.02] focus:outline-none focus:ring-4 ring-indigo-50"
+         className="flex-grow px-4 py-2 text-sm font-bold tracking-wide uppercase transition bg-indigo-800 border-t-2 border-b rounded-md shadow-lg text-slate-50 shadow-indigo-950/10 animation-pulse border-b-indigo-950 border-t-indigo-50/10 active:border-t-0 active:bg-indigo-800 active:border-b active:border-b-indigo-700 active:text-slate-50/80 group active:shadow-inner hover:bg-indigo-700 hover:scale-[1.02] focus:outline-none focus:ring-4 ring-indigo-50 disabled:bg-indigo-800"
          title="search"
       >
-         <span className="inline-block transition transform group:active:translate-y-12">
-            Search
-         </span>
+         <div className="inline-block transition transform group:active:translate-y-12">
+
+            {isLoading &&
+               <span className="inline-block mr-2 animate-spin">X</span>}
+            {isLoading ? "Loading" : "Search"}
+         </div>
       </button>
    </form>
    )
