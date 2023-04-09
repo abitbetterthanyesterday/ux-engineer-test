@@ -1,0 +1,1 @@
+export { SnackMobile } from './SnackMobile';

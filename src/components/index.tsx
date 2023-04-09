@@ -7,4 +7,5 @@ export * from './SearchInput';
 export * from "./Show";
 export * from "./ShowList";
 export * from './ShowListCard';
+export * from './SnackMobile';
 
