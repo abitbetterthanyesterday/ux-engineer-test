@@ -24,7 +24,7 @@ export function SearchInput() {
             }}
             onChange={(e) =>
                onQueryChange(e.target.value)}
-            placeholder="Try 'Breaking Bad'"
+            placeholder="Try 'Star Trek'"
          />
          {query && (
             <button

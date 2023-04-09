@@ -34,7 +34,7 @@ export function Show(): JSX.Element {
                         ? `Premiered ${convertDateToHumanReadableFormat(selectedShow.premiered)}`
                         : "Yet to premiere"})
                   </div>
-                  <div className="py-4 max-w-[65ch] duration-300 delay-[10000] animate-fadeIn leading-relaxed text-justify" dangerouslySetInnerHTML={{ __html: selectedShow.summary }} />
+                  <div className="py-4 max-w-[75ch] duration-300 delay-[10000] animate-fadeIn leading-relaxed text-justify" dangerouslySetInnerHTML={{ __html: selectedShow.summary }} />
                   <ul className="grid grid-cols-2 pt-8 justify-items-center md:grid-cols-3 gap-x-8 gap-y-8">
                      {selectedShow._embedded.cast.map((member: ICastMember) => (
                         <li key={member.character.name}>
