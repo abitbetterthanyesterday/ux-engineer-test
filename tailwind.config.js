@@ -27,9 +27,19 @@ module.exports = {
          spin: "spin 1s linear infinite",
          slideUp: "slideUp 360s linear alternate-reverse infinite",
          slideDown: "slideDown 360s linear alternate-reverse infinite",
-         fadeIn: 'fadeIn 1s ease-out'
+         fadeIn: 'fadeIn 1s ease-out',
+         snack: 'snack 300ms ease-in forwards',
       },
       keyframes:{
+         snack:{
+            "0%":{
+               transform: 'translateX(0)',
+            },
+            "100%":{
+               transform: 'translateX(110%)',
+            }
+
+         },
          spin:{
             "0%":{
                transform: 'rotate(0deg)',
