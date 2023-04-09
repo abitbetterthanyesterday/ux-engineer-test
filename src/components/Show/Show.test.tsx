@@ -1,7 +1,9 @@
-import { Props, Show } from "./Show";
 import { render, screen } from "@testing-library/react";
+import { Props, Show } from "./Show";
+
+import { IShow } from "../../types/shared";
 describe("components/Show", () => {
-   const defaultProps: Props = {
+   const defaultProps: Pick<Props, "unSelectShow"> & { selectedShow: IShow } = {
       selectedShow: {
          id: 1,
          name: "Test Show",
@@ -33,7 +35,7 @@ describe("components/Show", () => {
    };
    it("renders the show details", () => {
       render(<Show {...defaultProps} />);
-      expect(screen.getByText(defaultProps.selectedShow!.name)).toBeInTheDocument();
+      expect(screen.getByText(defaultProps.selectedShow.name)).toBeInTheDocument();
       expect(
          screen.getByText(`Premiered ${defaultProps.selectedShow!.premiered}`)
       ).toBeInTheDocument();

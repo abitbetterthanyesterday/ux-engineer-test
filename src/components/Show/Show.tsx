@@ -19,13 +19,13 @@ export function Show({ selectedShow, unSelectShow }: Props): JSX.Element {
 
    return (
       <>
-         <div className="absolute top-0 left-0 w-screen bg-indigo-950">
+         <div className="absolute top-0 left-0 w-screen h-full bg-indigo-950">
             {selectedShow.image && <img src={selectedShow.image.original} alt="" />}
          </div>
          <div className="absolute top-0 left-0 w-screen h-screen overflow-y-scroll bg-gradient-to-t from-slate-950 via-slate-950 to-slate-950/50 via-65% flex flex-col p-4 transition pt-12 pb-4">
             <div className="flex flex-col text-indigo-50">
                <div className="self-center mx-auto overflow-hidden text-center duration-300 rounded-lg w-52 animate-fadeIn border-slate-800 h-72">
-                  {selectedShow.image && <img src={selectedShow.image.original} alt={`cover poster for ${selectedShow.name}`} className="object-cover w-full h-full" />}
+                  {selectedShow.image ? <img src={selectedShow.image.original} alt={`cover poster for ${selectedShow.name}`} className="object-cover w-full h-full" /> : <div className="flex items-center justify-center w-full h-full p-4 uppercase bg-gradient-to-t from-indigo-950 to-slate-900/50 text-indigo-50/50">No preview available</div>}
                </div>
                <div className="mx-auto">
                   <h2 className="pt-2 text-2xl font-bold tracking-wider text-center uppercase duration-300 delay-500 animate-fadeIn">{selectedShow.name}</h2>

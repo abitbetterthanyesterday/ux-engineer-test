@@ -1,6 +1,6 @@
+import { useContext } from "react";
 import { AppContext } from "../../contexts/AppContext";
 import { IShow } from "../../types/shared";
-import { useContext } from "react";
 
 export function useSearchShow(
 ) {
@@ -25,7 +25,7 @@ export function useSearchShow(
    function onQueryChange(nextQuery: string): void {
       setHasSearched(false);
       setQuery(nextQuery);
-      setShows([]);
+      setShows([])
       setSelectedShow(null);
       setError("");
    }
@@ -33,9 +33,10 @@ export function useSearchShow(
    function onSearch(): void {
       if (!query) return;
 
+      console.log(query)
       setHasInitialSearched(true);
       setHasSearched(false);
-      setIsLoading(true);
+      setIsLoading('query');
       setShows([]);
       setSelectedShow(null);
       setError("");
@@ -54,14 +55,15 @@ export function useSearchShow(
    }
 
    function onSelectShow(show: IShow): void {
-      setIsLoading(true);
+      setIsLoading('show');
       setError("");
+      setSelectedShow({ name: show.name } as IShow)
 
       fetch(`https://api.tvmaze.com/shows/${show.id}?embed=cast`)
          .then((r: Response) => r.json())
          .then((json: IShow) => {
-            setIsLoading(false);
             setSelectedShow(json);
+            setIsLoading(false);
          })
          .catch(() => {
             setIsLoading(false);
@@ -77,6 +79,7 @@ export function useSearchShow(
       shows,
       selectedShow,
       onQueryChange,
+      resetQuery: () => onQueryChange(""),
       onSearch,
       onSelectShow,
       unSelectShow: () => setSelectedShow(null),

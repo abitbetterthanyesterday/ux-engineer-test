@@ -1,8 +1,9 @@
+export type LoadingState = boolean | 'query' | 'show';
 export interface IAppContext {
     query: string;
     setQuery: (nextQuery: string) => void;
-    isLoading: boolean;
-    setIsLoading: (nextLoading: boolean) => void;
+    isLoading: LoadingState,
+    setIsLoading: (nextLoading: LoadingState) => void;
     error: string;
     setError: (nextError: string) => void;
     hasSearched: boolean;
@@ -10,7 +11,7 @@ export interface IAppContext {
     shows: Array<IShow>;
     setShows: (nextShows: Array<IShow>) => void;
     selectedShow: IShow | null;
-    setSelectedShow: (nextSelectedShow: IShow | null) => void;
+    setSelectedShow: (nextSelectedShow: IShow | null ) => void;
     hasInitialSearched: boolean;
       setHasInitialSearched: (nextHasInitialSearch: boolean) => void;
 }
