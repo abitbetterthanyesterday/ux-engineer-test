@@ -31,16 +31,28 @@ export function SearchInput() {
          {query && (
             <button
                title={`Clear search query`}
+               onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                     resetQuery();
+                     e.stopPropagation()
+                  }
+               }}
                onClick={
                   resetQuery
                }
-               className="absolute right-2 top-1/4 flex-grow h-1/2 text-sm font-bold tracking-wide uppercase transition bg-transparent shadow-lg text-slate-50 shadow-indigo-950/10 border-indigo-50/50 active:border-t-0 active:bg-indigo-800/50 active:border-b active:border-b-indigo-700 active:text-slate-50/80 group active:shadow-inner hover:bg-indigo-700 hover:scale-[1.02] focus:outline-none focus:ring-4 ring-indigo-50 pr-4">
+               className="absolute right-2 top-1/4 flex-grow h-1/2 text-sm font-bold tracking-wide uppercase transition bg-transparent shadow-lg text-slate-50 shadow-indigo-950/10 border-indigo-50/50 active:border-t-0 active:bg-indigo-800/50 active:border-b active:border-b-indigo-700 active:text-slate-50/80 group active:shadow-inner hover:bg-indigo-700 hover:scale-[1.02] focus:outline-none focus:ring-4 ring-indigo-50 mr-4">
                <X className="text-indigo-100" />
             </button>)}
       </div>
       <button
          type="button"
          onClick={onSearch}
+         onKeyDown={(e) => {
+            if (e.key === "Enter") {
+               onSearch();
+               e.stopPropagation()
+            }
+         }}
          disabled={!!isLoading}
          className="flex-grow px-4 py-3 text-sm font-bold tracking-wide uppercase transition bg-indigo-800 border-t-2 border-b rounded-md shadow-lg text-slate-50 shadow-indigo-950/10 animation-pulse border-b-indigo-950 border-t-indigo-50/10 active:border-t-0 active:bg-indigo-800 active:border-b active:border-b-indigo-700 active:text-slate-50/80 group active:shadow-inner hover:bg-indigo-700 hover:scale-[1.02] focus:outline-none focus:ring-4 ring-indigo-50 disabled:bg-indigo-950 disabled:border-t-indigo-950 max-w-sm"
          title="search"
