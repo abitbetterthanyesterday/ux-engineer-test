@@ -1,3 +1,4 @@
+import { AlertTriangle, HelpCircle } from "react-feather";
 import { LandingBackground, Logo, LogoSmall, SearchInput, ShowList } from "../components";
 
 import { useSearchShow } from "../hooks";
@@ -30,8 +31,9 @@ export function ResultsPage() {
 
                {error && (
                   <div className="flex items-center flex-grow">
-                     <div className="flex flex-col gap-2 p-8 text-red-400 border border-red-500 rounded bg-red-900/20 text-red">
-                        <h2 className="pb-2 text-xl font-bold">
+                     <div className="flex flex-col gap-2 p-8 text-red-400 border border-red-500 rounded bg-red-900/30 text-red">
+                        <h2 className="flex items-center gap-2 pb-2 text-xl font-bold">
+                           <AlertTriangle className="text-red-400" />
                            An error has occured
                         </h2>
                         <p>
@@ -45,9 +47,9 @@ export function ResultsPage() {
                   </div>
                )}
 
-               {!hasSearched && !error && (
-                  <p className="block pt-12 my-auto overflow-hidden text-sm font-semibold tracking-wide text-center uppercase align-middle text-slate-50/50 m-w-3/4 text-ellipsis">
-                     'info' Hit search to get started
+               {!hasSearched && !error && !isLoading && (
+                  <p className="flex items-center justify-center gap-2 pt-12 my-auto overflow-hidden text-sm font-semibold tracking-wide text-center uppercase align-middle text-slate-50/50 m-w-3/4 text-ellipsis">
+                     <HelpCircle /> Hit search to get started
                   </p>
                )}
 
