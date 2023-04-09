@@ -11,7 +11,7 @@ export function ShowListCard({ show }: Props) {
     const { onSelectShow } = useSearchShow()
 
     return (<li
-        className="flex-col items-center justify-start flex-grow-0 flex-shrink-0 gap-2 cursor-pointer group max-w-[200px]"
+        className="flex flex-col items-center justify-start flex-grow-0 flex-shrink-0 gap-2 cursor-pointer group max-w-[200px] lg:max-w-[400px]"
         onClick={() => { onSelectShow(show) }}
         tabIndex={0}
         onKeyDown={(e) => {
