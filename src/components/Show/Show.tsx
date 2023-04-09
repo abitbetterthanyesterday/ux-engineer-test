@@ -2,9 +2,9 @@ import { useSearchShow } from "../../hooks";
 import { ICastMember } from "../../types/shared";
 import { CastMember } from "../CastMember";
 
-export type Props = Pick<ReturnType<typeof useSearchShow>, "selectedShow" | "unSelectShow">
+export function Show(): JSX.Element {
+   const { selectedShow, unSelectShow } = useSearchShow()
 
-export function Show({ selectedShow, unSelectShow }: Props): JSX.Element {
    if (!selectedShow) {
       throw new Error("Show component should not be rendered without a selected show")
    }
@@ -19,7 +19,7 @@ export function Show({ selectedShow, unSelectShow }: Props): JSX.Element {
 
    return (
       <>
-         <div className="absolute top-0 left-0 w-screen h-full bg-indigo-950">
+         <div className="absolute top-0 left-0 w-screen h-screen bg-indigo-950">
             {selectedShow.image && <img src={selectedShow.image.original} alt="" />}
          </div>
          <div className="absolute top-0 left-0 w-screen h-screen overflow-y-scroll bg-gradient-to-t from-slate-950 via-slate-950 to-slate-950/50 via-65% flex flex-col p-4 transition pt-12 pb-4">

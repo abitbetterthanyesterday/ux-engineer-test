@@ -1,6 +1,6 @@
-import { IShow } from "../../types/shared";
 import { useRef } from "react";
 import { useSearchShow } from "../../hooks";
+import { IShow } from "../../types/shared";
 
 export interface Props {
     show: IShow
@@ -13,6 +13,12 @@ export function ShowListCard({ show }: Props) {
     return (<li
         className="flex-col items-center justify-start flex-grow-0 flex-shrink-0 gap-2 cursor-pointer group max-w-[200px]"
         onClick={() => { onSelectShow(show) }}
+        tabIndex={0}
+        onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+                onSelectShow(show)
+            }
+        }}
     >
         <div
             className="flex flex-wrap items-center justify-center flex-grow overflow-hidden transition border rounded shadow-lg cursor-pointer bg-gradient-to-t from-slate-950 to-slate-900 w-52 h-72 border-slate-900 group-hover:ring-4 group-hover:ring-offset-4 ring-offset-indigo-950 ring-indigo-500"

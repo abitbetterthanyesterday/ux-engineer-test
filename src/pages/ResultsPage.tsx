@@ -1,4 +1,4 @@
-import { LogoSmall, SearchInput, Show, ShowList } from "../components";
+import { LogoSmall, SearchInput, ShowList } from "../components";
 
 import { useSearchShow } from "../hooks";
 
@@ -7,7 +7,6 @@ export function ResultsPage() {
       shows,
       query,
       selectedShow,
-      unSelectShow,
       isLoading,
       hasSearched,
       error
@@ -65,7 +64,7 @@ export function ResultsPage() {
             </p>
          )}
 
-         {!isLoading && selectedShow?.id && <Show selectedShow={selectedShow} unSelectShow={unSelectShow} />}
+
       </div >
    )
 }

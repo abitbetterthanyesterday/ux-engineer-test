@@ -1,12 +1,16 @@
+import { Show } from "../components"
+import { useSearchShow } from "../hooks"
 import { LandingPage } from "./LandingPage"
 import { ResultsPage } from "./ResultsPage"
-import { useSearchShow } from "../hooks"
 
 export function Router() {
+    const { hasInitialSearched, isLoading, selectedShow } = useSearchShow()
 
-    const { hasInitialSearched } = useSearchShow()
     if (!hasInitialSearched) {
         return <LandingPage />
+    } else if (!isLoading && selectedShow?.id) {
+        return <Show />
+    } else {
+        return <ResultsPage />
     }
-    else { return <ResultsPage /> }
 }

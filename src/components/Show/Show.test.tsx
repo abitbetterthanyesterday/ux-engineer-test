@@ -1,9 +1,10 @@
 import { render, screen } from "@testing-library/react";
-import { Props, Show } from "./Show";
 
 import { IShow } from "../../types/shared";
+import { Show } from "./Show";
+
 describe("components/Show", () => {
-   const defaultProps: Pick<Props, "unSelectShow"> & { selectedShow: IShow } = {
+   const defaultProps: { selectedShow: IShow } = {
       selectedShow: {
          id: 1,
          name: "Test Show",
@@ -29,12 +30,9 @@ describe("components/Show", () => {
             ],
          },
       },
-      unSelectShow: function (): void {
-         throw new Error("Function not implemented.");
-      },
    };
    it("renders the show details", () => {
-      render(<Show {...defaultProps} />);
+      render(<Show />);
       expect(screen.getByText(defaultProps.selectedShow.name)).toBeInTheDocument();
       expect(
          screen.getByText(`Premiered ${defaultProps.selectedShow!.premiered}`)
@@ -45,7 +43,7 @@ describe("components/Show", () => {
    });
    it("triggers the onCancel callback when the back button is clicked", () => {
       const onCancel = jest.fn();
-      render(<Show {...defaultProps} unSelectShow={onCancel} />);
+      render(<Show />);
       screen.getByText("Back to list").click();
       expect(onCancel).toHaveBeenCalled();
    });
