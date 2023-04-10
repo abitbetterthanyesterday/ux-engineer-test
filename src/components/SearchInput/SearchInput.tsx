@@ -1,12 +1,16 @@
 import { Loader, Search, X } from 'react-feather'
 
 import { useSearchShow } from '@/hooks'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 export function SearchInput() {
    const inputRef = useRef<HTMLInputElement>(null)
 
    const { query, isLoading, onQueryChange, onSearch, resetQuery } = useSearchShow()
+
+   useEffect(() => {
+      inputRef.current?.blur()
+   }, [useEffect])
 
    return (
       <form
@@ -27,12 +31,13 @@ export function SearchInput() {
                value={query}
                onKeyUp={(e) => {
                   if (e.key === 'Enter') {
-                     inputRef.current?.blur()
                      onSearch()
-                     e.stopPropagation()
+                     inputRef.current?.blur()
                   }
                }}
-               onChange={(e) => onQueryChange(e.target.value)}
+               onChange={(e) => {
+                  onQueryChange(e.target.value)
+               }}
                placeholder="Try 'Star Trek'"
             />
             {/* Clear search query button */}

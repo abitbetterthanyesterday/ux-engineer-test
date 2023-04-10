@@ -22,7 +22,7 @@ describe('hooks/useSearchShow', () => {
          expect(result.current.isLoading).toBe('query')
       })
 
-      it.only('sets loading state to false when search is successful, and the shows to the result of the api call', async () => {
+      it('sets loading state to false when search is successful, and the shows to the result of the api call', async () => {
          // Arrange
          // Mock fetch
          const mockResult = MOCK_SHOWS.map((show) => ({ show })).reduce(
@@ -40,9 +40,7 @@ describe('hooks/useSearchShow', () => {
          const { result } = renderHook(() => useSearchShow(), { wrapper: AppProvider })
 
          // Act
-         act(() => {
-            result.current.onQueryChange('hello')
-         })
+         act(() => result.current.onQueryChange('hello'))
          act(() => result.current.onSearch())
 
          // Assert

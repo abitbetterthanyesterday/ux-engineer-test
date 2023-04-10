@@ -1,5 +1,3 @@
-import './App.css'
-
 import { ErrorBoundary, SnackMobile } from './components'
 
 import { AppProvider } from './contexts/AppContext'
