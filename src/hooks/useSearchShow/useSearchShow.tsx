@@ -83,6 +83,15 @@ export function useSearchShow(
       onSearch,
       onSelectShow,
       unSelectShow: () => setSelectedShow(null),
-      hasInitialSearched
+      hasInitialSearched,
+      reset: () => {
+         setHasInitialSearched(false);
+         setHasSearched(false);
+         setQuery("");
+         setShows([]);
+         setSelectedShow(null);
+         setError("");
+         setIsLoading(false);
+      }
    };
 }

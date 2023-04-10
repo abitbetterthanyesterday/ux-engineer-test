@@ -1,8 +1,10 @@
 import { Loader, Search, X } from 'react-feather';
 
+import { useRef } from 'react';
 import { useSearchShow } from "../../hooks";
 
 export function SearchInput() {
+   const inputRef = useRef<HTMLInputElement>(null);
 
    const {
       query,
@@ -12,14 +14,17 @@ export function SearchInput() {
       resetQuery,
    } = useSearchShow();
 
+
    return (<form className="flex flex-wrap gap-4" onSubmit={(e) => e.preventDefault()} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault() } }}>
       <div className="relative flex-grow">
          <input
+            ref={inputRef}
             className="box-border w-full px-6 py-3 pr-12 border-2 border-indigo-800 rounded-md shadow-inner bg-slate-900 focus:border-indigo-400 focus:border-2 focus:shadow-outline focus:ring-indigo-50 focus:ring-4 focus:outline-none text-indigo-50 sm:text-lg placeholder:text-indigo-50/30 sm:min-w-[40ch]"
             autoFocus
             value={query}
             onKeyUp={(e) => {
                if (e.key === "Enter") {
+                  inputRef.current?.blur()
                   onSearch();
                   e.stopPropagation()
                }
@@ -33,22 +38,28 @@ export function SearchInput() {
                title={`Clear search query`}
                onKeyDown={(e) => {
                   if (e.key === "Enter") {
+                     inputRef.current?.focus()
                      resetQuery();
                      e.stopPropagation()
                   }
                }}
-               onClick={
-                  resetQuery
-               }
+               onClick={() => {
+                  inputRef.current?.focus()
+                  resetQuery()
+               }}
                className="absolute right-2 top-1/4 flex-grow h-1/2 text-sm font-bold tracking-wide uppercase transition bg-transparent shadow-lg text-slate-50 shadow-indigo-950/10 border-indigo-50/50 active:border-t-0 active:bg-indigo-800/50 active:border-b active:border-b-indigo-700 active:text-slate-50/80 group active:shadow-inner hover:bg-indigo-700 hover:scale-[1.02] focus:outline-none focus:ring-4 ring-indigo-50 mr-4">
                <X className="text-indigo-100" />
             </button>)}
       </div>
       <button
          type="button"
-         onClick={onSearch}
+         onClick={() => {
+            inputRef.current?.blur()
+            onSearch()
+         }}
          onKeyDown={(e) => {
             if (e.key === "Enter") {
+               inputRef.current?.blur()
                onSearch();
                e.stopPropagation()
             }
