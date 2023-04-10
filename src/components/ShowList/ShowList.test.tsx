@@ -1,12 +1,12 @@
-import * as hooks from '../../hooks'
+import * as hooks from '@/hooks'
 
-import { render, screen } from '@testing-library/react'
 import { Props, ShowList } from './ShowList'
+import { render, screen } from '@testing-library/react'
 
+import { AppProvider } from '@/contexts/AppContext'
+import { MOCK_SHOWS } from '@/tests/fixtures'
+import { useSearchShowMock } from '@/hooks/useSearchShow/useSearchShow.mock'
 import userEvent from '@testing-library/user-event'
-import { AppProvider } from '../../contexts/AppContext'
-import { useSearchShowMock } from '../../hooks/useSearchShow/useSearchShow.mock'
-import { MOCK_SHOWS } from '../../tests/fixtures'
 
 jest.mock('../../hooks', () => {
    return {

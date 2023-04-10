@@ -1,4 +1,4 @@
-import { AppContext } from '../../contexts/AppContext'
+import { AppContext } from '@/contexts/AppContext'
 import { IShow } from '@/types/shared'
 import { useContext } from 'react'
 

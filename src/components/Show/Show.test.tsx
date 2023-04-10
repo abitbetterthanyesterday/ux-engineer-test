@@ -1,11 +1,11 @@
-import * as hooks from '../../hooks'
+import * as hooks from '@/hooks'
 
 import { render, screen } from '@testing-library/react'
 
-import userEvent from '@testing-library/user-event'
-import { useSearchShowMock } from '../../hooks/useSearchShow/useSearchShow.mock'
-import { convertDateToHumanReadableFormat } from '../../utils'
 import { Show } from './Show'
+import { convertDateToHumanReadableFormat } from '@/utils'
+import { useSearchShowMock } from '@/hooks/useSearchShow/useSearchShow.mock'
+import userEvent from '@testing-library/user-event'
 
 jest.mock('../../hooks', () => {
    return {

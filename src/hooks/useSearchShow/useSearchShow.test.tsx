@@ -1,9 +1,9 @@
 import { act, waitFor } from '@testing-library/react'
 
+import { AppProvider } from '@/contexts/AppContext'
+import { IShow } from '@/types/shared'
+import { MOCK_SHOWS } from '@/tests/fixtures'
 import { renderHook } from '@testing-library/react-hooks'
-import { AppProvider } from '../../contexts/AppContext'
-import { MOCK_SHOWS } from '../../tests/fixtures'
-import { IShow } from '../../types/shared'
 import { useSearchShow } from './useSearchShow'
 
 describe('hooks/useSearchShow', () => {
