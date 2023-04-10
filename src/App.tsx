@@ -5,7 +5,7 @@ import { Router } from './pages/router'
 
 export default function App(): JSX.Element {
    return (
-      <div className='overscroll-none'>
+      <div className='overflow-x-hidden overscroll-none'>
          <ErrorBoundary>
             <SnackMobile />
             <AppProvider>

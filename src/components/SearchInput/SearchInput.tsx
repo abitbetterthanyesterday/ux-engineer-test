@@ -1,7 +1,7 @@
 import { Loader, Search, X } from 'react-feather'
+import { useEffect, useRef } from 'react'
 
 import { useSearchShow } from '@/hooks'
-import { useEffect, useRef } from 'react'
 
 export function SearchInput() {
    const inputRef = useRef<HTMLInputElement>(null)
@@ -79,7 +79,7 @@ export function SearchInput() {
                }
             }}
             disabled={!!isLoading}
-            className='flex-grow px-4 py-3 text-sm font-bold tracking-wide uppercase transition bg-indigo-800 border-t-2 border-b rounded-md shadow-lg text-slate-50 shadow-indigo-950/10 animation-pulse border-b-indigo-950 border-t-indigo-50/10 active:border-t-0 active:bg-indigo-800 active:border-b active:border-b-indigo-700 active:text-slate-50/80 group active:shadow-inner hover:bg-indigo-700 hover:scale-[1.02] focus:outline-none focus:ring-4 ring-indigo-50 disabled:bg-indigo-950 disabled:border-t-indigo-950 max-w-sm'
+            className='flex-grow px-4 py-3 text-sm font-bold tracking-wide uppercase transition bg-indigo-800 border-t-2 border-b rounded-md shadow-lg text-slate-50 shadow-indigo-950/10 animation-pulse border-b-indigo-950 border-t-indigo-50/10 active:border-t-0 active:bg-indigo-800 active:border-b active:border-b-indigo-700 active:text-slate-50/80 group active:shadow-inner hover:bg-indigo-700 hover:scale-[1.02] focus:outline-none focus:ring-4 ring-indigo-50 disabled:bg-indigo-950 disabled:border-t-indigo-950 sm:max-w-xs'
             title='search'
          >
             <div className='flex items-center justify-center transition transform group:active:translate-y-12'>
