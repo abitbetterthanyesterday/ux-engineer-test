@@ -55,7 +55,7 @@ export function SearchInput() {
                      inputRef.current?.focus()
                      resetQuery()
                   }}
-                  className='absolute right-2 top-1/4 flex-grow h-1/2 text-sm font-bold tracking-wide uppercase transition bg-transparent shadow-lg text-slate-50 shadow-indigo-950/10 border-indigo-50/50 active:border-t-0 active:bg-indigo-800/50 active:border-b active:border-b-indigo-700 active:text-slate-50/80 group active:shadow-inner hover:bg-indigo-700 hover:scale-[1.02] focus:outline-none focus:ring-4 ring-indigo-50 mr-4'
+                  className='absolute right-2 top-2 flex-grow text-sm font-bold tracking-wide uppercase transition bg-transparent shadow-lg text-slate-50 shadow-indigo-950/10 border-indigo-50/50 active:border-t-0 active:bg-indigo-800/50 active:border-b active:border-b-indigo-700 active:text-slate-50/80 group active:shadow-inner hover:bg-indigo-700 hover:scale-[1.02] focus:outline-none focus:ring-4 ring-indigo-50 px-2 py-2 mr-1 rounded-lg'
                >
                   <X className='text-indigo-100' />
                </button>

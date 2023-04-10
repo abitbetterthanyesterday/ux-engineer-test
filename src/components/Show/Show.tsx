@@ -25,7 +25,7 @@ export function Show(): JSX.Element {
          {/* End of background atmosphere image */}
 
          {/* Result list item */}
-         <div className='absolute top-0 left-0 w-screen h-screen overflow-y-scroll bg-gradient-to-t from-slate-950 via-slate-950 to-slate-950/50 via-55% flex flex-col p-4 transition pt-12 pb-16'>
+         <div className='absolute top-0 left-0 w-screen h-screen overflow-y-scroll bg-gradient-to-t from-slate-950 via-slate-950 to-slate-950/50 via-55% flex flex-col p-4 transition pt-12 pb-20'>
             <div className='flex flex-col text-indigo-50'>
                <div className='self-center mx-auto overflow-hidden text-center duration-300 rounded-lg w-52 animate-fadeIn border-slate-800 h-72'>
                   {selectedShow.image ? (
