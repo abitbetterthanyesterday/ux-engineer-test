@@ -9,3 +9,8 @@ body {
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
 }
+
+/* Set the background color for the scroll bounce on mobile*/
+html {
+   background-color: #020617;
+}
