@@ -1,10 +1,21 @@
+import * as hooks from '@/hooks'
+
 import { render, screen } from '@testing-library/react'
 
-import { IShow } from '../../types/shared'
 import { Show } from './Show'
+import { convertDateToHumanReadableFormat } from '@/utils'
+import { useSearchShowMock } from '@/hooks/useSearchShow/useSearchShow.mock'
+import userEvent from '@testing-library/user-event'
+
+jest.mock('../../hooks', () => {
+   return {
+      __esModule: true,
+      ...jest.requireActual('../../hooks')
+   }
+})
 
 describe('components/Show', () => {
-   const defaultProps: { selectedShow: IShow } = {
+   const defaultProps = {
       selectedShow: {
          id: 1,
          name: 'Test Show',
@@ -31,20 +42,34 @@ describe('components/Show', () => {
          }
       }
    }
+
    it('renders the show details', () => {
+      jest.spyOn(hooks, 'useSearchShow').mockReturnValue({
+         ...useSearchShowMock,
+         selectedShow: defaultProps.selectedShow
+      })
       render(<Show />)
+
+      const date = convertDateToHumanReadableFormat(defaultProps.selectedShow.premiered)
+      const regexpDate = new RegExp(date, 'i')
       expect(screen.getByText(defaultProps.selectedShow.name)).toBeInTheDocument()
-      expect(
-         screen.getByText(`Premiered ${defaultProps.selectedShow!.premiered}`)
-      ).toBeInTheDocument()
+      expect(screen.getByText(regexpDate)).toBeInTheDocument()
       expect(
          screen.getByText(defaultProps.selectedShow!._embedded.cast[0].person.name)
       ).toBeInTheDocument()
    })
-   it('triggers the onCancel callback when the back button is clicked', () => {
-      const onCancel = jest.fn()
+   it('triggers the onCancel callback when the back button is clicked', async () => {
+      const unSelectShowSpy = jest.fn()
+
+      jest.spyOn(hooks, 'useSearchShow').mockReturnValue({
+         ...useSearchShowMock,
+         selectedShow: defaultProps.selectedShow,
+         unSelectShow: unSelectShowSpy
+      })
+
+      const user = userEvent.setup()
       render(<Show />)
-      screen.getByText('Back to list').click()
-      expect(onCancel).toHaveBeenCalled()
+      await user.click(screen.getByRole('button', { name: /back/i }))
+      expect(unSelectShowSpy).toHaveBeenCalled()
    })
 })

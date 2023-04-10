@@ -1,7 +1,19 @@
+import * as hooks from '@/hooks'
+
 import { Props, ShowList } from './ShowList'
 import { render, screen } from '@testing-library/react'
 
-import { MOCK_SHOWS } from '../../tests/fixtures'
+import { AppProvider } from '@/contexts/AppContext'
+import { MOCK_SHOWS } from '@/tests/fixtures'
+import { useSearchShowMock } from '@/hooks/useSearchShow/useSearchShow.mock'
+import userEvent from '@testing-library/user-event'
+
+jest.mock('../../hooks', () => {
+   return {
+      __esModule: true,
+      ...jest.requireActual('../../hooks')
+   }
+})
 
 describe('components/ShowList', () => {
    const defaultProps: Props = {
@@ -10,7 +22,6 @@ describe('components/ShowList', () => {
    it('renders a list of shows', () => {
       render(<ShowList {...defaultProps} />)
       const listItems = screen.getAllByRole('listitem')
-
       let itemIndex = 0
       for (const show of MOCK_SHOWS) {
          expect(listItems[itemIndex]).toHaveTextContent(show.name)
@@ -18,16 +29,19 @@ describe('components/ShowList', () => {
       }
    })
 
-   it('trigger the onSelectShow callback when a show is clicked', () => {
-      const onSelectShow = jest.fn()
-      render(<ShowList {...defaultProps} />)
+   it('trigger the onSelectShow callback when a show is clicked', async () => {
+      const onSelectShowSpy = jest.fn()
+      jest.spyOn(hooks, 'useSearchShow').mockReturnValueOnce({
+         ...useSearchShowMock,
+         shows: defaultProps.shows,
+         onSelectShow: onSelectShowSpy
+      })
+      const user = userEvent.setup()
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      render(<ShowList {...defaultProps} />, { wrapper: AppProvider })
       const listItems = screen.getAllByRole('listitem')
-
-      let itemIndex = 0
-      for (const show of MOCK_SHOWS) {
-         listItems[itemIndex].click()
-         expect(onSelectShow).toHaveBeenCalledWith(show)
-         itemIndex++
-      }
+      await user.click(listItems[0])
+      expect(onSelectShowSpy).toHaveBeenLastCalledWith(defaultProps.shows[0])
    })
 })

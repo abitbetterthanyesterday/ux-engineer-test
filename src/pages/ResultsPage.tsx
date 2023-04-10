@@ -1,7 +1,7 @@
+import { LandingBackground, Logo, LogoSmall, SearchInput, ShowList } from '@/components'
 import { AlertTriangle, HelpCircle } from 'react-feather'
-import { LandingBackground, Logo, LogoSmall, SearchInput, ShowList } from '../components'
 
-import { useSearchShow } from '../hooks'
+import { useSearchShow } from '@/hooks'
 
 export function ResultsPage() {
    const { shows, query, selectedShow, isLoading, hasSearched, error } = useSearchShow()

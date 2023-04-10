@@ -1,6 +1,6 @@
+import { useSearchShow } from '@/hooks'
+import { IShow } from '@/types/shared'
 import { useRef } from 'react'
-import { useSearchShow } from '../../hooks'
-import { IShow } from '../../types/shared'
 
 export interface Props {
    show: IShow

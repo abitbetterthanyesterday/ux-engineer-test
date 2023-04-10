@@ -1,4 +1,4 @@
-import { IAppContext, IShow, LoadingState } from '../types/shared'
+import { IAppContext, IShow, LoadingState } from '@/types/shared'
 // It's not a great idea to have a general state for performance reasons, but it's fine for this example
 import { ReactNode, createContext, useState } from 'react'
 

@@ -1,4 +1,4 @@
-import { ICastMember } from '../../types/shared'
+import { ICastMember } from '@/types/shared'
 
 export interface Props {
    member: ICastMember
@@ -11,7 +11,7 @@ export function CastMember({ member }: Props): JSX.Element {
             {member.person.image ? (
                <img
                   src={member.person.image.medium}
-                  alt=''
+                  alt={`Photo of ${member.person.name} (actor playing ${member.character.name})`}
                   className='object-cover w-42 aspect-square'
                />
             ) : (

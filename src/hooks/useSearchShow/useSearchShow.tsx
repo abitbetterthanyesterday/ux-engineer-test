@@ -1,6 +1,6 @@
+import { AppContext } from '@/contexts/AppContext'
+import { IShow } from '@/types/shared'
 import { useContext } from 'react'
-import { AppContext } from '../../contexts/AppContext'
-import { IShow } from '../../types/shared'
 
 export function useSearchShow() {
    const {
@@ -28,10 +28,9 @@ export function useSearchShow() {
       setError('')
    }
 
-   function onSearch(): void {
-      if (!query) return
+   function onSearch(): Promise<void> {
+      if (!query) return Promise.resolve()
 
-      console.log(query)
       setHasInitialSearched(true)
       setHasSearched(false)
       setIsLoading('query')
@@ -39,8 +38,10 @@ export function useSearchShow() {
       setSelectedShow(null)
       setError('')
 
-      fetch(`https://api.tvmaze.com/search/shows?q=${query}`)
-         .then((r: Response) => r.json())
+      return fetch(`https://api.tvmaze.com/search/shows?q=${query}`)
+         .then((r: Response) => {
+            return r.json()
+         })
          .then((json: Array<{ show: IShow }>) => {
             setHasSearched(true)
             setIsLoading(false)

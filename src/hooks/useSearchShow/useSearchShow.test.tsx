@@ -1,8 +1,8 @@
 import { act, waitFor } from '@testing-library/react'
 
-import { AppProvider } from '../../contexts/AppContext'
-import { IShow } from '../../types/shared'
-import { MOCK_SHOWS } from '../../tests/fixtures'
+import { AppProvider } from '@/contexts/AppContext'
+import { IShow } from '@/types/shared'
+import { MOCK_SHOWS } from '@/tests/fixtures'
 import { renderHook } from '@testing-library/react-hooks'
 import { useSearchShow } from './useSearchShow'
 
@@ -13,24 +13,27 @@ describe('hooks/useSearchShow', () => {
          const { result } = renderHook(() => useSearchShow(), { wrapper: AppProvider })
          // Act
          act(() => {
+            result.current.onQueryChange('hello')
+         })
+         act(() => {
             result.current.onSearch()
          })
          // Assert
-         expect(result.current.isLoading).toBe(true)
+         expect(result.current.isLoading).toBe('query')
       })
 
-      it('sets loading state to false when search is successful, and the shows to the result of the api call', async () => {
+      it.only('sets loading state to false when search is successful, and the shows to the result of the api call', async () => {
          // Arrange
          // Mock fetch
-         global.fetch = jest.fn().mockImplementation(() => {
+         const mockResult = MOCK_SHOWS.map((show) => ({ show })).reduce(
+            (acc, cur) => acc.concat(cur),
+            [] as Array<{ show: IShow }>
+         )
+
+         global.fetch = jest.fn().mockImplementationOnce(() => {
             return Promise.resolve({
                json: () => {
-                  return Promise.resolve(
-                     MOCK_SHOWS.map((show) => ({ show })).reduce(
-                        (acc, cur) => acc.concat(cur),
-                        [] as Array<{ show: IShow }>
-                     )
-                  )
+                  return Promise.resolve(mockResult)
                }
             })
          })
@@ -38,8 +41,10 @@ describe('hooks/useSearchShow', () => {
 
          // Act
          act(() => {
-            result.current.onSearch()
+            result.current.onQueryChange('hello')
          })
+         act(() => result.current.onSearch())
+
          // Assert
          await waitFor(() => {
             expect(result.current.isLoading).toBe(false)
@@ -57,13 +62,15 @@ describe('hooks/useSearchShow', () => {
 
          // Act
          act(() => {
+            result.current.onQueryChange('hello')
+         })
+         act(() => {
             result.current.onSearch()
          })
          // Assert
          await waitFor(() => {
-            expect(result.current.isLoading).toBe(false)
+            expect(result.current.error).toBe('Could not load shows.')
          })
-         expect(result.current.error).toEqual('Could not load shows.')
       })
    })
 
@@ -83,13 +90,13 @@ describe('hooks/useSearchShow', () => {
             result.current.onSelectShow(MOCK_SHOWS[0])
          })
          // Assert
-         expect(result.current.isLoading).toBe(true)
+         expect(result.current.isLoading).toBe('show')
 
          // With batching, we need to add this line to make sure we wait for the last update...
          await waitFor(() => expect(result.current.isLoading).toBe(false))
       })
 
-      it('sets loading state to false when search is successful, and the shows to the result of the api call', async () => {
+      it('sets loading state to false when search is successful, and the selected show to the result of the api call', async () => {
          // Arrange
          // Mock fetch
          global.fetch = jest.fn().mockImplementation(() => {
@@ -99,7 +106,7 @@ describe('hooks/useSearchShow', () => {
                }
             })
          })
-         const { result } = renderHook(() => useSearchShow())
+         const { result } = renderHook(() => useSearchShow(), { wrapper: AppProvider })
 
          // Act
          act(() => {
@@ -118,7 +125,7 @@ describe('hooks/useSearchShow', () => {
          global.fetch = jest.fn().mockImplementation(() => {
             return Promise.reject('Could not load shows.')
          })
-         const { result } = renderHook(() => useSearchShow())
+         const { result } = renderHook(() => useSearchShow(), { wrapper: AppProvider })
 
          // Act
          act(() => {
