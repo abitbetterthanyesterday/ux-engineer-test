@@ -36,10 +36,16 @@ Apologies for any grammar mistakes, I tend to write fast and clean up language i
   - [x] Explore existing app/API technical limitations
 - [x] Plan UI
   - [x] Mood: colors, fonts, icons.
-  - [x] Sketch/Wirerame
-- [ ]  Implement!
+  - [x] Sketch/Wireframe
+- [x]  Implement!
   - [x] Landing screen UI
-  - [ ] Search result UI
+  - [x] Search result UI
+  ... and other UI pages/work as required!
+- [x] Release
+  - [x] Bump up the release version
+  - [ ] Add real README
+  - [ ] Reorganize the existing README
+  - [ ] Writeup a feedback/review
 
 ### Goal/Context
 
