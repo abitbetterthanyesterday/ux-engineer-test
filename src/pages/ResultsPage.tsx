@@ -6,8 +6,8 @@ import {
    SearchInput,
    ShowList
 } from '@/components'
-import { HelpCircle } from 'react-feather'
 
+import { HelpCircle } from 'react-feather'
 import { useSearchShow } from '@/hooks'
 
 export function ResultsPage() {
@@ -18,19 +18,21 @@ export function ResultsPage() {
    const hasNoSearchResults = shows.length === 0 && hasSearched && !isLoading && !error
 
    return (
-      <>
+      <div className='w-screen overflow-x-hidden'>
          <div className='sticky top-0'>
             <LandingBackground />
          </div>
-         <div className='relative z-20 flex flex-col w-screen h-screen px-4 py-4 overflow-hidden sm:pb-12 sm:h-auto sm:min-h-screen bg-gradient-to-t from-slate-950/90 to-slate-900/90 text-slate-50'>
-            <div className='sm:container'>
-               <div className='self-start block pb-4 pl-4 sm:hidden'>
-                  <LogoSmall />
+         <div className='relative z-20 flex flex-col w-screen h-screen min-h-screen px-4 py-4 overflow-hidden sm:h-auto sm:pb-12 bg-gradient-to-t from-slate-950/90 to-slate-900/90 text-slate-50'>
+            <div className='flex flex-col flex-grow sm:container'>
+               <div className='sm:pr-8 sm:mx-36'>
+                  <div className='self-start block pb-4 pl-4 sm:hidden'>
+                     <LogoSmall />
+                  </div>
+                  <div className='self-start hidden pb-8 pl-4 sm:block'>
+                     <Logo />
+                  </div>
+                  <SearchInput />
                </div>
-               <div className='self-start hidden pb-8 pl-4 sm:block'>
-                  <Logo />
-               </div>
-               <SearchInput />
 
                {error && <ErrorMessage />}
 
@@ -55,7 +57,7 @@ export function ResultsPage() {
                            ? `Found 1 result for "${query}"`
                            : `Found ${shows.length} results for "${query}"`}
                      </p>
-                     <div className='flex-grow'>
+                     <div className='flex items-center flex-grow'>
                         <ShowList shows={shows} />
                      </div>
                   </>
@@ -68,6 +70,6 @@ export function ResultsPage() {
                )}
             </div>
          </div>
-      </>
+      </div>
    )
 }
