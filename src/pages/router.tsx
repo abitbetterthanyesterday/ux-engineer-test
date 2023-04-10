@@ -5,10 +5,11 @@ import { ShowDetailPage } from './ShowDetailPage'
 
 export function Router() {
    const { hasInitialSearched, isLoading, selectedShow } = useSearchShow()
+   const hasSelectedShow = selectedShow?.id !== undefined && !isLoading
 
    if (!hasInitialSearched) {
       return <LandingPage />
-   } else if (!isLoading && selectedShow?.id) {
+   } else if (hasSelectedShow) {
       return <ShowDetailPage />
    } else {
       return <ResultsPage />

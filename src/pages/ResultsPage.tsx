@@ -6,6 +6,10 @@ import { useSearchShow } from '@/hooks'
 export function ResultsPage() {
    const { shows, query, selectedShow, isLoading, hasSearched, error } = useSearchShow()
 
+   const hasNotSearched = !hasSearched && !isLoading && !error
+   const hasSearchResults = shows.length > 0 && hasSearched && !isLoading && !error
+   const hasNoSearchResults = shows.length === 0 && hasSearched && !isLoading && !error
+
    return (
       <>
          <div className='sticky top-0'>
@@ -37,12 +41,6 @@ export function ResultsPage() {
                   </div>
                )}
 
-               {!hasSearched && !error && !isLoading && (
-                  <p className='flex items-center justify-center gap-2 pt-12 my-auto overflow-hidden text-sm font-semibold tracking-wide text-center uppercase align-middle text-slate-50/50 m-w-3/4 text-ellipsis'>
-                     <HelpCircle /> Hit search to get started
-                  </p>
-               )}
-
                {isLoading && !error && (
                   <p className='block pt-12 text-sm font-semibold tracking-wide text-center uppercase delay-1000 text-slate-50/50 animate-fadeIn'>
                      {isLoading === 'show' && selectedShow
@@ -51,7 +49,13 @@ export function ResultsPage() {
                   </p>
                )}
 
-               {!isLoading && shows.length > 0 && hasSearched && !error && (
+               {hasNotSearched && (
+                  <p className='flex items-center justify-center gap-2 pt-12 my-auto overflow-hidden text-sm font-semibold tracking-wide text-center uppercase align-middle text-slate-50/50 m-w-3/4 text-ellipsis'>
+                     <HelpCircle /> Hit search to get started
+                  </p>
+               )}
+
+               {hasSearchResults && (
                   <>
                      <p className='block pt-12 my-auto overflow-hidden text-sm font-semibold tracking-wide text-center uppercase align-middle sm:pb-8 sm:text-md text-slate-50/50 m-w-3/4 text-ellipsis'>
                         {shows.length === 1
@@ -64,7 +68,7 @@ export function ResultsPage() {
                   </>
                )}
 
-               {!isLoading && shows.length === 0 && hasSearched && !error && (
+               {hasNoSearchResults && (
                   <p className='block pt-12 my-auto overflow-hidden text-sm font-semibold tracking-wide text-center uppercase align-middle text-slate-50/50 m-w-3/4 text-ellipsis'>
                      No results for "{query}"
                   </p>
