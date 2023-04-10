@@ -1,4 +1,4 @@
-import { useSearchShow } from '../hooks'
+import { useSearchShow } from '@/hooks'
 import { LandingPage } from './LandingPage'
 import { ResultsPage } from './ResultsPage'
 import { ShowDetailPage } from './ShowDetailPage'

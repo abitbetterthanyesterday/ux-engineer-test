@@ -1,6 +1,6 @@
-import { LandingBackground, Logo, SearchInput } from '../components'
+import { LandingBackground, Logo, SearchInput } from '@/components'
 
-import { useSearchShow } from '../hooks'
+import { useSearchShow } from '@/hooks'
 
 export function LandingPage() {
    const { error } = useSearchShow()

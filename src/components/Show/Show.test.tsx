@@ -3,6 +3,7 @@ import * as hooks from '../../hooks'
 import { render, screen } from '@testing-library/react'
 
 import userEvent from '@testing-library/user-event'
+import { useSearchShowMock } from '../../hooks/useSearchShow/useSearchShow.mock'
 import { convertDateToHumanReadableFormat } from '../../utils'
 import { Show } from './Show'
 
@@ -42,25 +43,10 @@ describe('components/Show', () => {
       }
    }
 
-   const defaultUseSearchShow: ReturnType<typeof hooks.useSearchShow> = {
-      query: '',
-      isLoading: false,
-      error: '',
-      hasSearched: true,
-      hasInitialSearched: true,
-      shows: [],
-      onQueryChange: jest.fn(),
-      resetQuery: jest.fn(),
-      onSearch: jest.fn(),
-      onSelectShow: jest.fn(),
-      unSelectShow: jest.fn(),
-      reset: jest.fn(),
-      selectedShow: defaultProps.selectedShow
-   }
-
    it('renders the show details', () => {
       jest.spyOn(hooks, 'useSearchShow').mockReturnValue({
-         ...defaultUseSearchShow
+         ...useSearchShowMock,
+         selectedShow: defaultProps.selectedShow
       })
       render(<Show />)
 
@@ -76,7 +62,8 @@ describe('components/Show', () => {
       const unSelectShowSpy = jest.fn()
 
       jest.spyOn(hooks, 'useSearchShow').mockReturnValue({
-         ...defaultUseSearchShow,
+         ...useSearchShowMock,
+         selectedShow: defaultProps.selectedShow,
          unSelectShow: unSelectShowSpy
       })
 

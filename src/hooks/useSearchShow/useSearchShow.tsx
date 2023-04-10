@@ -1,6 +1,6 @@
-import { useContext } from 'react'
 import { AppContext } from '../../contexts/AppContext'
-import { IShow } from '../../types/shared'
+import { IShow } from '@/types/shared'
+import { useContext } from 'react'
 
 export function useSearchShow() {
    const {

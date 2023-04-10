@@ -1,7 +1,5 @@
-import { Show } from "../components";
+import { Show } from '@/components'
 
 export function ShowDetailPage() {
-    return (
-        <Show />
-    )
+   return <Show />
 }

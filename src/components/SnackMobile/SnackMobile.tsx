@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Info, X } from 'react-feather'
 
+const SNACK_DURATION_IN_MS = 5000
+
 export function SnackMobile() {
    const isMobile = window.innerWidth < 768
    const [shouldShow, setShouldShow] = useState(!isMobile)
@@ -10,7 +12,7 @@ export function SnackMobile() {
          if (shouldShow) {
             setShouldShow(false)
          }
-      }, 5000)
+      }, SNACK_DURATION_IN_MS)
 
       return () => clearTimeout(timeout)
    })

@@ -1,4 +1,4 @@
-import { useSearchShow } from '../../hooks'
+import { useSearchShow } from '../../hooks/index'
 
 export function Logo() {
    const { reset } = useSearchShow()

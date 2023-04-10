@@ -1,4 +1,4 @@
-import { IShow } from '../types/shared'
+import { IShow } from '@/types/shared'
 
 export const MOCK_SHOW_DATA: IShow = {
    id: 1,

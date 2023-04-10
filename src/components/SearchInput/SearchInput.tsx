@@ -1,7 +1,7 @@
 import { Loader, Search, X } from 'react-feather'
 
+import { useSearchShow } from '@/hooks'
 import { useRef } from 'react'
-import { useSearchShow } from '../../hooks'
 
 export function SearchInput() {
    const inputRef = useRef<HTMLInputElement>(null)
@@ -18,6 +18,7 @@ export function SearchInput() {
             }
          }}
       >
+         {/* Search input */}
          <div className='relative flex-grow'>
             <input
                ref={inputRef}
@@ -34,6 +35,7 @@ export function SearchInput() {
                onChange={(e) => onQueryChange(e.target.value)}
                placeholder="Try 'Star Trek'"
             />
+            {/* Clear search query button */}
             {query && (
                <button
                   title={`Clear search query`}
@@ -53,7 +55,11 @@ export function SearchInput() {
                   <X className='text-indigo-100' />
                </button>
             )}
+            {/* End clear search query button */}
          </div>
+         {/* End search input */}
+
+         {/* Search button */}
          <button
             type='button'
             onClick={() => {
@@ -89,6 +95,7 @@ export function SearchInput() {
                )}
             </div>
          </button>
+         {/* End search button */}
       </form>
    )
 }

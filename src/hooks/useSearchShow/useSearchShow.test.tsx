@@ -1,9 +1,9 @@
 import { act, waitFor } from '@testing-library/react'
 
-import { AppProvider } from '../../contexts/AppContext'
-import { IShow } from '../../types/shared'
-import { MOCK_SHOWS } from '../../tests/fixtures'
 import { renderHook } from '@testing-library/react-hooks'
+import { AppProvider } from '../../contexts/AppContext'
+import { MOCK_SHOWS } from '../../tests/fixtures'
+import { IShow } from '../../types/shared'
 import { useSearchShow } from './useSearchShow'
 
 describe('hooks/useSearchShow', () => {
@@ -13,10 +13,13 @@ describe('hooks/useSearchShow', () => {
          const { result } = renderHook(() => useSearchShow(), { wrapper: AppProvider })
          // Act
          act(() => {
+            result.current.onQueryChange('hello')
+         })
+         act(() => {
             result.current.onSearch()
          })
          // Assert
-         expect(result.current.isLoading).toBe(true)
+         expect(result.current.isLoading).toBe('query')
       })
 
       it('sets loading state to false when search is successful, and the shows to the result of the api call', async () => {
@@ -37,13 +40,14 @@ describe('hooks/useSearchShow', () => {
          const { result } = renderHook(() => useSearchShow(), { wrapper: AppProvider })
 
          // Act
-         act(() => {
-            result.current.onSearch()
+         await act(async () => {
+            await result.current.onSearch()
          })
          // Assert
          await waitFor(() => {
             expect(result.current.isLoading).toBe(false)
          })
+         console.log('here', result.current.shows)
          expect(result.current.shows).toEqual(MOCK_SHOWS)
       })
 
@@ -56,14 +60,13 @@ describe('hooks/useSearchShow', () => {
          const { result } = renderHook(() => useSearchShow(), { wrapper: AppProvider })
 
          // Act
-         act(() => {
-            result.current.onSearch()
+         await act(async () => {
+            await result.current.onSearch()
          })
          // Assert
          await waitFor(() => {
-            expect(result.current.isLoading).toBe(false)
+            expect(result.current.error).toBe('Could not load shows.')
          })
-         expect(result.current.error).toEqual('Could not load shows.')
       })
    })
 
@@ -83,7 +86,7 @@ describe('hooks/useSearchShow', () => {
             result.current.onSelectShow(MOCK_SHOWS[0])
          })
          // Assert
-         expect(result.current.isLoading).toBe(true)
+         expect(result.current.isLoading).toBe('show')
 
          // With batching, we need to add this line to make sure we wait for the last update...
          await waitFor(() => expect(result.current.isLoading).toBe(false))
@@ -99,7 +102,7 @@ describe('hooks/useSearchShow', () => {
                }
             })
          })
-         const { result } = renderHook(() => useSearchShow())
+         const { result } = renderHook(() => useSearchShow(), { wrapper: AppProvider })
 
          // Act
          act(() => {
@@ -118,7 +121,7 @@ describe('hooks/useSearchShow', () => {
          global.fetch = jest.fn().mockImplementation(() => {
             return Promise.reject('Could not load shows.')
          })
-         const { result } = renderHook(() => useSearchShow())
+         const { result } = renderHook(() => useSearchShow(), { wrapper: AppProvider })
 
          // Act
          act(() => {

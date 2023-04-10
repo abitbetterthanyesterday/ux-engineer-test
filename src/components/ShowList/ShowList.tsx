@@ -1,5 +1,5 @@
-import { IShow } from '../../types/shared'
-import { ShowListCard } from '../ShowListCard'
+import { ShowListCard } from '@/components'
+import { IShow } from '@/types/shared'
 
 export interface Props {
    shows: Array<IShow>

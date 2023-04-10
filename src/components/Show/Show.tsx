@@ -1,8 +1,8 @@
+import { CastMember } from '@/components'
+import { useSearchShow } from '@/hooks'
+import { ICastMember } from '@/types/shared'
+import { convertDateToHumanReadableFormat } from '@/utils'
 import { ChevronLeft } from 'react-feather'
-import { useSearchShow } from '../../hooks'
-import { ICastMember } from '../../types/shared'
-import { convertDateToHumanReadableFormat } from '../../utils'
-import { CastMember } from '../CastMember'
 
 export function Show(): JSX.Element {
    const { selectedShow, unSelectShow } = useSearchShow()
@@ -13,6 +13,7 @@ export function Show(): JSX.Element {
 
    return (
       <>
+         {/* Background atmosphere image */}
          <div className='absolute top-0 left-0 w-screen h-screen overflow-hidden bg-indigo-950'>
             {selectedShow.image && (
                <img
@@ -22,6 +23,9 @@ export function Show(): JSX.Element {
                />
             )}
          </div>
+         {/* End of background atmosphere image */}
+
+         {/* Result list item */}
          <div className='absolute top-0 left-0 w-screen h-screen overflow-y-scroll bg-gradient-to-t from-slate-950 via-slate-950 to-slate-950/50 via-55% flex flex-col p-4 transition pt-12 pb-16'>
             <div className='flex flex-col text-indigo-50'>
                <div className='self-center mx-auto overflow-hidden text-center duration-300 rounded-lg w-52 animate-fadeIn border-slate-800 h-72'>
@@ -61,7 +65,9 @@ export function Show(): JSX.Element {
                   </ul>
                </div>
             </div>
+            {/* End of result list item */}
 
+            {/* Back button */}
             <div className='fixed flex justify-center w-screen bottom-6'>
                <button
                   className='flex items-center justify-center max-w-sm gap-2 px-8 py-2 mx-auto my-2 text-sm font-bold uppercase bg-indigo-800 border-t rounded-lg shadow-md text-indigo-50 hover:bg-indigo-900 tracking-loose border-t-indigo-500 hover:scale-[1.03] transition'
@@ -74,6 +80,7 @@ export function Show(): JSX.Element {
                   Back to results
                </button>
             </div>
+            {/* End of back button */}
          </div>
       </>
    )

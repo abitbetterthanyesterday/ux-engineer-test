@@ -13,9 +13,6 @@ test('renders learn react link', () => {
 
 describe('App (e2e/integration tests)', () => {
    it('render the list of shows when I search for a show and render the show detail once I select a show', async () => {
-      // FIXME: there are issue with the act not being wrapped. This is a workaround and should be addressed
-      global.console.error = jest.fn()
-
       // Arrange
       // Mock fetch
       const mockFetch = jest.fn().mockImplementationOnce(() => {
