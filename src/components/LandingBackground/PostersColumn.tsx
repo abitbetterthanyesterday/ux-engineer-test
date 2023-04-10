@@ -15,7 +15,7 @@ export function PostersColumn({ index }: { index: number }): JSX.Element {
       <div
          className={`grid gap-6 column-1 ${getTranslateY()} even:animate-slideUp odd:animate-slideDown`}
       >
-         {[...Array(100)].map((_, i) => (
+         {[...Array(25)].map((_, i) => (
             <Poster key={i} />
          ))}
       </div>
