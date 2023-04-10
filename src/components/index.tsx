@@ -1,5 +1,6 @@
 export * from './CastMember'
 export * from './ErrorBoundary'
+export * from './ErrorMessage'
 export * from './LandingBackground'
 export * from './Loader'
 export * from './Logo'
