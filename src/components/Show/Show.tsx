@@ -48,7 +48,7 @@ export function Show(): JSX.Element {
 
             <div className="fixed flex justify-center w-screen bottom-6">
                <button
-                  className="flex items-center justify-center max-w-sm gap-2 px-8 py-2 mx-auto my-2 text-sm font-bold uppercase bg-indigo-800 border-t rounded-lg shadow-md text-indigo-50 hover:bg-indigo-900 tracking-loose border-t-indigo-500"
+                  className="flex items-center justify-center max-w-sm gap-2 px-8 py-2 mx-auto my-2 text-sm font-bold uppercase bg-indigo-800 border-t rounded-lg shadow-md text-indigo-50 hover:bg-indigo-900 tracking-loose border-t-indigo-500 hover:scale-[1.03] transition"
                   onClick={(e) => { unSelectShow(); e.stopPropagation() }}>
                   <ChevronLeft />
                   Back to results
