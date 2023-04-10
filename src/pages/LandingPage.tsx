@@ -1,4 +1,4 @@
-import { LandingBackground, Logo, SearchInput } from '@/components'
+import { ErrorMessage, LandingBackground, Logo, SearchInput } from '@/components'
 
 import { useSearchShow } from '@/hooks'
 
@@ -15,7 +15,7 @@ export function LandingPage() {
                   <SearchInput />
                </div>
             </div>
-            {error && <div>{error}</div>}
+            {error && <ErrorMessage />}
          </main>
       </>
    )

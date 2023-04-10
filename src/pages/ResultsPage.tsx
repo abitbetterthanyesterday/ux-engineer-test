@@ -1,5 +1,12 @@
-import { LandingBackground, Logo, LogoSmall, SearchInput, ShowList } from '@/components'
-import { AlertTriangle, HelpCircle } from 'react-feather'
+import {
+   ErrorMessage,
+   LandingBackground,
+   Logo,
+   LogoSmall,
+   SearchInput,
+   ShowList
+} from '@/components'
+import { HelpCircle } from 'react-feather'
 
 import { useSearchShow } from '@/hooks'
 
@@ -25,21 +32,7 @@ export function ResultsPage() {
                </div>
                <SearchInput />
 
-               {error && (
-                  <div className='flex items-center flex-grow'>
-                     <div className='flex flex-col gap-2 p-8 text-red-400 border border-red-500 rounded bg-red-900/30 text-red'>
-                        <h2 className='flex items-center gap-2 pb-2 text-xl font-bold'>
-                           <AlertTriangle className='text-red-400' />
-                           An error has occured
-                        </h2>
-                        <p>This is an an issue on our end. Please try again later.</p>
-                        <p>
-                           If the problem persists, please report the issue to
-                           support@tvdatabase.com
-                        </p>
-                     </div>
-                  </div>
-               )}
+               {error && <ErrorMessage />}
 
                {isLoading && !error && (
                   <p className='block pt-12 text-sm font-semibold tracking-wide text-center uppercase delay-1000 text-slate-50/50 animate-fadeIn'>
