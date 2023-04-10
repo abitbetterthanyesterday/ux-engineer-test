@@ -54,6 +54,13 @@ This is completely fine here, but if the application was to grow in functionalit
 Also, I think that the state has reached its limit before changing it to a reducer
 I took the decision to not do it, due to time constraints, but it certainly is on my wish list.
 
+## Git history
+
+This project was a solo project and therefore I took the liberty to have fairly consequent commits and PRs.
+I would not advise this as best practice, but given the time constraints and the circumstances (green field project, exploration work with the UI, solo project) I think it was an acceptable approach.
+
+In a real world project, I would advise to follow a more atomic approach to committing and smaller PRs!
+
 ---
 
 ## Preparation work
