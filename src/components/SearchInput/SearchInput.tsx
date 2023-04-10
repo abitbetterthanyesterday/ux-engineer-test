@@ -38,7 +38,7 @@ export function SearchInput() {
                onChange={(e) => {
                   onQueryChange(e.target.value)
                }}
-               placeholder="Try 'Star Trek'"
+               placeholder="Try 'Star Trek' or 'Games of Thrones'"
             />
             {/* Clear search query button */}
             {query && (
