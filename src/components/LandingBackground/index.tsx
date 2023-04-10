@@ -1,2 +1,1 @@
-export { MemoLandingBackground as LandingBackground } from './LandingBackground';
-
+export { MemoLandingBackground as LandingBackground } from './LandingBackground'

@@ -1,46 +1,46 @@
-export type LoadingState = boolean | 'query' | 'show';
+export type LoadingState = boolean | 'query' | 'show'
 export interface IAppContext {
-    query: string;
-    setQuery: (nextQuery: string) => void;
-    isLoading: LoadingState,
-    setIsLoading: (nextLoading: LoadingState) => void;
-    error: string;
-    setError: (nextError: string) => void;
-    hasSearched: boolean;
-    setHasSearched: (nextHasSearched: boolean) => void;
-    shows: Array<IShow>;
-    setShows: (nextShows: Array<IShow>) => void;
-    selectedShow: IShow | null;
-    setSelectedShow: (nextSelectedShow: IShow | null ) => void;
-    hasInitialSearched: boolean;
-      setHasInitialSearched: (nextHasInitialSearch: boolean) => void;
+   query: string
+   setQuery: (nextQuery: string) => void
+   isLoading: LoadingState
+   setIsLoading: (nextLoading: LoadingState) => void
+   error: string
+   setError: (nextError: string) => void
+   hasSearched: boolean
+   setHasSearched: (nextHasSearched: boolean) => void
+   shows: Array<IShow>
+   setShows: (nextShows: Array<IShow>) => void
+   selectedShow: IShow | null
+   setSelectedShow: (nextSelectedShow: IShow | null) => void
+   hasInitialSearched: boolean
+   setHasInitialSearched: (nextHasInitialSearch: boolean) => void
 }
 
 export interface IShow {
-   id: number;
-   name: string;
-   summary: string;
+   id: number
+   name: string
+   summary: string
    image: {
-      original: string;
-      medium: string;
-   };
-   premiered: string;
+      original: string
+      medium: string
+   }
+   premiered: string
    _embedded: {
-      cast: Array<ICastMember>;
-   };
+      cast: Array<ICastMember>
+   }
    // We extend the interface to allow extra properties.
    // In reality, the API returns a lot more properties than we use.
-   [x: string | number | symbol]: unknown;
+   [x: string | number | symbol]: unknown
 }
 
 export interface ICastMember {
    person: {
-      name: string;
+      name: string
       image: {
-         medium: string;
-      };
-   };
+         medium: string
+      }
+   }
    character: {
-      name: string;
-   };
+      name: string
+   }
 }

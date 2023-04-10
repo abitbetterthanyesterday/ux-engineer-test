@@ -1,1 +1,1 @@
-export { ShowListCard } from './ShowListCard';
+export { ShowListCard } from './ShowListCard'
