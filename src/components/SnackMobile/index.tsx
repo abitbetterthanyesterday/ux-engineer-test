@@ -1,1 +1,1 @@
-export { SnackMobile } from './SnackMobile';
+export { SnackMobile } from './SnackMobile'
