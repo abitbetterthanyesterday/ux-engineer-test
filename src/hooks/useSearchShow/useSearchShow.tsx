@@ -31,7 +31,6 @@ export function useSearchShow() {
    function onSearch(): void {
       if (!query) return
 
-      console.log(query)
       setHasInitialSearched(true)
       setHasSearched(false)
       setIsLoading('query')

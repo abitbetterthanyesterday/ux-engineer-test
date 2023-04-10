@@ -1,6 +1,7 @@
 import { ChevronLeft } from 'react-feather'
 import { useSearchShow } from '../../hooks'
 import { ICastMember } from '../../types/shared'
+import { convertDateToHumanReadableFormat } from '../../utils'
 import { CastMember } from '../CastMember'
 
 export function Show(): JSX.Element {
@@ -8,13 +9,6 @@ export function Show(): JSX.Element {
 
    if (!selectedShow) {
       throw new Error('Show component should not be rendered without a selected show')
-   }
-
-   function convertDateToHumanReadableFormat(dateString: string) {
-      const date = new Date(dateString)
-      const options = { year: 'numeric', month: 'long', day: 'numeric' } as const
-      const formattedDate = new Intl.DateTimeFormat('en-AU', options).format(date)
-      return formattedDate
    }
 
    return (
