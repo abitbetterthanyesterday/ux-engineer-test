@@ -28,8 +28,8 @@ export function useSearchShow() {
       setError('')
    }
 
-   function onSearch(): void {
-      if (!query) return
+   function onSearch(): Promise<void> {
+      if (!query) return Promise.resolve()
 
       setHasInitialSearched(true)
       setHasSearched(false)
@@ -38,8 +38,10 @@ export function useSearchShow() {
       setSelectedShow(null)
       setError('')
 
-      fetch(`https://api.tvmaze.com/search/shows?q=${query}`)
-         .then((r: Response) => r.json())
+      return fetch(`https://api.tvmaze.com/search/shows?q=${query}`)
+         .then((r: Response) => {
+            return r.json()
+         })
          .then((json: Array<{ show: IShow }>) => {
             setHasSearched(true)
             setIsLoading(false)

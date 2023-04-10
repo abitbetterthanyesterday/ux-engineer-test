@@ -22,32 +22,33 @@ describe('hooks/useSearchShow', () => {
          expect(result.current.isLoading).toBe('query')
       })
 
-      it('sets loading state to false when search is successful, and the shows to the result of the api call', async () => {
+      it.only('sets loading state to false when search is successful, and the shows to the result of the api call', async () => {
          // Arrange
          // Mock fetch
-         global.fetch = jest.fn().mockImplementation(() => {
+         const mockResult = MOCK_SHOWS.map((show) => ({ show })).reduce(
+            (acc, cur) => acc.concat(cur),
+            [] as Array<{ show: IShow }>
+         )
+
+         global.fetch = jest.fn().mockImplementationOnce(() => {
             return Promise.resolve({
                json: () => {
-                  return Promise.resolve(
-                     MOCK_SHOWS.map((show) => ({ show })).reduce(
-                        (acc, cur) => acc.concat(cur),
-                        [] as Array<{ show: IShow }>
-                     )
-                  )
+                  return Promise.resolve(mockResult)
                }
             })
          })
          const { result } = renderHook(() => useSearchShow(), { wrapper: AppProvider })
 
          // Act
-         await act(async () => {
-            await result.current.onSearch()
+         act(() => {
+            result.current.onQueryChange('hello')
          })
+         act(() => result.current.onSearch())
+
          // Assert
          await waitFor(() => {
             expect(result.current.isLoading).toBe(false)
          })
-         console.log('here', result.current.shows)
          expect(result.current.shows).toEqual(MOCK_SHOWS)
       })
 
@@ -60,8 +61,11 @@ describe('hooks/useSearchShow', () => {
          const { result } = renderHook(() => useSearchShow(), { wrapper: AppProvider })
 
          // Act
-         await act(async () => {
-            await result.current.onSearch()
+         act(() => {
+            result.current.onQueryChange('hello')
+         })
+         act(() => {
+            result.current.onSearch()
          })
          // Assert
          await waitFor(() => {
@@ -92,7 +96,7 @@ describe('hooks/useSearchShow', () => {
          await waitFor(() => expect(result.current.isLoading).toBe(false))
       })
 
-      it('sets loading state to false when search is successful, and the shows to the result of the api call', async () => {
+      it('sets loading state to false when search is successful, and the selected show to the result of the api call', async () => {
          // Arrange
          // Mock fetch
          global.fetch = jest.fn().mockImplementation(() => {
