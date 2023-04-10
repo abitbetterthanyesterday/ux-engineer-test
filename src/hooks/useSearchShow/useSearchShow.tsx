@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { AppContext } from "../../contexts/AppContext";
-import { IShow } from "../../types/shared";
+import { useContext } from 'react'
+import { AppContext } from '../../contexts/AppContext'
+import { IShow } from '../../types/shared'
 
-export function useSearchShow(
-) {
+export function useSearchShow() {
    const {
       isLoading,
       setIsLoading,
@@ -19,56 +18,55 @@ export function useSearchShow(
       setSelectedShow,
       setHasInitialSearched,
       hasInitialSearched
-   } = useContext(AppContext);
-
+   } = useContext(AppContext)
 
    function onQueryChange(nextQuery: string): void {
-      setHasSearched(false);
-      setQuery(nextQuery);
+      setHasSearched(false)
+      setQuery(nextQuery)
       setShows([])
-      setSelectedShow(null);
-      setError("");
+      setSelectedShow(null)
+      setError('')
    }
 
    function onSearch(): void {
-      if (!query) return;
+      if (!query) return
 
       console.log(query)
-      setHasInitialSearched(true);
-      setHasSearched(false);
-      setIsLoading('query');
-      setShows([]);
-      setSelectedShow(null);
-      setError("");
+      setHasInitialSearched(true)
+      setHasSearched(false)
+      setIsLoading('query')
+      setShows([])
+      setSelectedShow(null)
+      setError('')
 
       fetch(`https://api.tvmaze.com/search/shows?q=${query}`)
          .then((r: Response) => r.json())
          .then((json: Array<{ show: IShow }>) => {
-            setHasSearched(true);
-            setIsLoading(false);
-            setShows(json.map((r) => r.show));
+            setHasSearched(true)
+            setIsLoading(false)
+            setShows(json.map((r) => r.show))
          })
          .catch(() => {
-            setIsLoading(false);
-            setError("Could not load shows.");
-         });
+            setIsLoading(false)
+            setError('Could not load shows.')
+         })
    }
 
    function onSelectShow(show: IShow): void {
-      setIsLoading('show');
-      setError("");
+      setIsLoading('show')
+      setError('')
       setSelectedShow({ name: show.name } as IShow)
 
       fetch(`https://api.tvmaze.com/shows/${show.id}?embed=cast`)
          .then((r: Response) => r.json())
          .then((json: IShow) => {
-            setSelectedShow(json);
-            setIsLoading(false);
+            setSelectedShow(json)
+            setIsLoading(false)
          })
          .catch(() => {
-            setIsLoading(false);
-            setError("Could not load show details.");
-         });
+            setIsLoading(false)
+            setError('Could not load show details.')
+         })
    }
 
    return {
@@ -79,19 +77,19 @@ export function useSearchShow(
       shows,
       selectedShow,
       onQueryChange,
-      resetQuery: () => onQueryChange(""),
+      resetQuery: () => onQueryChange(''),
       onSearch,
       onSelectShow,
       unSelectShow: () => setSelectedShow(null),
       hasInitialSearched,
       reset: () => {
-         setHasInitialSearched(false);
-         setHasSearched(false);
-         setQuery("");
-         setShows([]);
-         setSelectedShow(null);
-         setError("");
-         setIsLoading(false);
+         setHasInitialSearched(false)
+         setHasSearched(false)
+         setQuery('')
+         setShows([])
+         setSelectedShow(null)
+         setError('')
+         setIsLoading(false)
       }
-   };
+   }
 }

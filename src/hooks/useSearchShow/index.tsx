@@ -1,1 +1,1 @@
-export { useSearchShow } from "./useSearchShow";
+export { useSearchShow } from './useSearchShow'

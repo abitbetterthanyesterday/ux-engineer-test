@@ -1,2 +1,1 @@
-export { Logo, LogoSmall } from './Logo';
-
+export { Logo, LogoSmall } from './Logo'
