@@ -24,7 +24,7 @@ export function ResultsPage() {
          </div>
          <div className='relative z-20 flex flex-col w-screen h-screen min-h-screen px-4 py-4 overflow-hidden sm:h-auto sm:pb-12 bg-gradient-to-t from-slate-950/90 to-slate-900/90 text-slate-50'>
             <div className='flex flex-col flex-grow sm:container'>
-               <div className='sm:pr-8 sm:mx-36'>
+               <div className='md:mx-36'>
                   <div className='self-start block pb-4 pl-4 sm:hidden'>
                      <LogoSmall />
                   </div>
