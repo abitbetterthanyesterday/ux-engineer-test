@@ -1,3 +1,4 @@
+import { ChevronLeft } from "react-feather";
 import { useSearchShow } from "../../hooks";
 import { ICastMember } from "../../types/shared";
 import { CastMember } from "../CastMember";
@@ -22,7 +23,7 @@ export function Show(): JSX.Element {
          <div className="absolute top-0 left-0 w-screen h-screen overflow-hidden bg-indigo-950">
             {selectedShow.image && <img src={selectedShow.image.original} alt={`poster of ${selectedShow.name}`} className="object-fill w-full" />}
          </div>
-         <div className="absolute top-0 left-0 w-screen h-screen overflow-y-scroll bg-gradient-to-t from-slate-950 via-slate-950 to-slate-950/50 via-55% flex flex-col p-4 transition pt-12 pb-4">
+         <div className="absolute top-0 left-0 w-screen h-screen overflow-y-scroll bg-gradient-to-t from-slate-950 via-slate-950 to-slate-950/50 via-55% flex flex-col p-4 transition pt-12 pb-16">
             <div className="flex flex-col text-indigo-50">
                <div className="self-center mx-auto overflow-hidden text-center duration-300 rounded-lg w-52 animate-fadeIn border-slate-800 h-72">
                   {selectedShow.image ? <img src={selectedShow.image.original} alt={`cover poster for ${selectedShow.name}`} className="object-cover w-full h-full" /> : <div className="flex items-center justify-center w-full h-full p-4 uppercase bg-gradient-to-t from-indigo-950 to-slate-900/50 text-indigo-50/50">No preview available</div>}
@@ -45,9 +46,14 @@ export function Show(): JSX.Element {
                </div>
             </div>
 
-            <button
-               className="sticky bottom-0 max-w-sm px-8 py-2 mx-auto my-2 text-sm font-bold uppercase bg-indigo-800 border-t rounded-lg shadow-md text-indigo-50 hover:bg-indigo-900 tracking-loose border-t-indigo-500"
-               onClick={(e) => { unSelectShow(); e.stopPropagation() }}>Back to list</button>
+            <div className="fixed flex justify-center w-screen bottom-6">
+               <button
+                  className="flex items-center justify-center max-w-sm gap-2 px-8 py-2 mx-auto my-2 text-sm font-bold uppercase bg-indigo-800 border-t rounded-lg shadow-md text-indigo-50 hover:bg-indigo-900 tracking-loose border-t-indigo-500"
+                  onClick={(e) => { unSelectShow(); e.stopPropagation() }}>
+                  <ChevronLeft />
+                  Back to results
+               </button>
+            </div>
          </div >
       </>)
 }
